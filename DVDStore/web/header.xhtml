@@ -1,77 +1,70 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<header xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-               
-    </h:head>
-    <h:body>
 
-        <div class="ds-header-01">
-            <div class="ds-header-busca input-append row">
-                <h:form>
-                    <h:inputText class="span6" id="appendedInputButton"></h:inputText> 
-                    <h:commandButton value="Buscar" class="span2 btn btn-success"></h:commandButton>
-                </h:form>
-            </div> 
-        </div>
-        <div class="ds-header-02">
-            <div class="ds-header-menu row">
-                <nav class="ds-menu span8">
-                    <ul>
-                        <li class="dropdown">
-                            <h:link class="ds-link-menu">Fimes <b class="caret"></b></h:link>
-                            <div class="ds-menudrop" style="display: none;">
-                                
-                                <div class="ds-titulo"><h5>Gêneros</h5></div>
-                                <ul class="ds-generos">
-                                    <li class="divider"></li>
-                                    <li><h:link>Animação</h:link></li>
-                                    <li><h:link>Ação</h:link></li>
-                                    <li><h:link>Aventurs</h:link></li>
-                                    <li><h:link>Comédia</h:link></li>
-                                    <li><h:link>Drama</h:link></li>
-                                    <li><h:link>Terror</h:link></li>
-                                </ul>
-                            </div>
-                        
-                        </li>
-                        <li><h:link class="ds-link-menu">Lançamentos</h:link></li>
-                        <li><h:link class="ds-link-menu" outcome="login">Meu Cadastro</h:link></li>
-                        <li><h:link class="ds-link-menu" outcome="index">Página inicial</h:link></li> 
-                    </ul>                    
-                </nav>
-                <div class="ds-header-cart span4">
-                    <div class="ds-header-cart-det row">
-                        <div class="span12">
-                            <!--
-                            <b class="span5"><h:link>Meus pedidos</h:link></b>
-                            <b class="span1">|</b>
-                            -->
-                            <!-- EXIBE OS DADOS DO CARRINHO - ITENS E SUBTOTAL  -->
-                            <b class="span6"><h:outputText value="Carrinho vazio" id="idCart" /></b>                    
-                        </div>      
-                    </div>
-                    <div class="ic-cart-header"><i class="icon-shopping-cart"></i></div>
-                    
+    <div class="ds-header-01">
+        <div class="ds-header-busca input-append row">
+            <h:form>
+                <h:inputText class="span6" id="appendedInputButton"></h:inputText> 
+                <h:commandButton value="Buscar" class="span2 btn btn-success"></h:commandButton>
+            </h:form>
+        </div> 
+    </div>
+    <div class="ds-header-02">
+        <div class="ds-header-menu row">
+            <nav class="ds-menu span8">
+                <ul>
+                    <li class="dropdown">
+                        <h:link class="ds-link-menu">Fimes <b class="caret"></b></h:link>
+                        <div class="ds-menudrop" style="display: none;">
+
+                            <div class="ds-titulo"><h5>Gêneros</h5></div>
+                            <ul class="ds-generos">
+                                <li class="divider"></li>
+                                <li><h:link>Animação</h:link></li>
+                                <li><h:link>Ação</h:link></li>
+                                <li><h:link>Aventurs</h:link></li>
+                                <li><h:link>Comédia</h:link></li>
+                                <li><h:link>Drama</h:link></li>
+                                <li><h:link>Terror</h:link></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                    <li><h:link class="ds-link-menu">Lançamentos</h:link></li>
+                    <li><h:link class="ds-link-menu" outcome="login">Meu Cadastro</h:link></li>
+                    <li><h:link class="ds-link-menu" outcome="index">Página inicial</h:link></li> 
+                </ul>                    
+            </nav>
+            <div class="ds-header-cart span4">
+                <div class="ds-header-cart-det row">
+                    <div class="span12">
+                        <!--
+                        <b class="span5"><h:link>Meus pedidos</h:link></b>
+                        <b class="span1">|</b>
+                        -->
+                        <!-- EXIBE OS DADOS DO CARRINHO - ITENS E SUBTOTAL  -->
+                        <b class="span6"><h:outputText value="Carrinho vazio" id="idCart" /></b>                    
+                    </div>      
                 </div>
+                <div class="ic-cart-header"><i class="icon-shopping-cart"></i></div>
+
             </div>
         </div>
-        <script>
-            
-            jQuery('.ds-menu li.dropdown').each(function () {
-                
-                    jQuery(this).hover(function () {
-                        
-                        //jQuery('.ds-menudrop', this).stop().slideDown('slow');
-                        jQuery('.ds-menudrop', this).stop().fadeIn('slow');
-                    },function () {
-                        jQuery('.ds-menudrop', this).stop().fadeOut('slow');
-                    });
+    </div>
+    <script>
+
+        jQuery('.ds-menu li.dropdown').each(function () {
+
+                jQuery(this).hover(function () {
+
+                    //jQuery('.ds-menudrop', this).stop().slideDown('slow');
+                    jQuery('.ds-menudrop', this).stop().fadeIn('slow');
+                },function () {
+                    jQuery('.ds-menudrop', this).stop().fadeOut('slow');
                 });
-                
-                
-        </script>
-    </h:body>
-</html>
+            });
+
+
+    </script>
+</header>
 

@@ -1,55 +1,44 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        
-    </h:head>
-    <h:body>
-        <div class="ds-content-centro row-fluid">
-            <h4>Cadastro</h4>
-            <br />
-            <div class="ds-login row">
-                <h:form>
-                <div class="ds-coluna1 span5">
-                    
-                    
-                        <h5>Meus dados</h5>
-                        <h:outputLabel value="Nome Completo" />
-                        <h:inputText></h:inputText>                        
-                        <h:outputLabel value="CPF" />
-                        <h:inputText></h:inputText>
-                        <h:outputLabel value="Telefone" />
-                        <h:inputText />
-                        
-                        <h5>Dados de acesso</h5>
-                        <h:outputLabel value="E-mail" />
-                        <h:inputText />
-                        <h:outputLabel value="Senha" />
-                        <h:inputSecret />
-                        <h:outputLabel value="Confirme a senha" />
-                        <h:inputSecret />
-                        <br/>
-                        <h:commandButton class="btn btn-success" value="Continuar &rarr;"/>                     
-                                                                          
-                </div>
-                <div class="ds-coluna2 span6">
-                    <h5>Endereço de cobrança</h5>
-                    <h:outputLabel value="CEP" />
-                    <h:inputText />
-                    <h:outputLabel value="Endereço" />
-                    <h:inputText />
-                    <h:outputLabel value="Cidade" />
-                    <h:inputText />
-                    <h:outputLabel value="Estado" />
-                    <h:inputText />
-                    
-                </div>
-                </h:form>
-                
-            </div>
-        </div>
-        
-    </h:body>
-</html>
+<div class="ds-content-centro row-fluid"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h4>Cadastro</h4>
+    <br />
+    <div class="ds-login row">
+        <h:form>
+        <div class="ds-coluna1 span5">
 
+                <h5>Meus dados</h5>
+                <h:outputLabel value="Nome Completo" />
+                <h:inputText></h:inputText>                        
+                <h:outputLabel value="CPF" />
+                <h:inputText></h:inputText>
+                <h:outputLabel value="Telefone" />
+                <h:inputText />
+
+                <h5>Dados de acesso</h5>
+                <h:outputLabel value="E-mail" />
+                <h:inputText />
+                <h:outputLabel value="Senha" />
+                <h:inputSecret />
+                <h:outputLabel value="Confirme a senha" />
+                <h:inputSecret />
+                <br/>
+                <h:commandButton class="btn btn-success" value="Continuar >>" />                     
+
+        </div>
+        <div class="ds-coluna2 span6">
+            <h5>Endereço de cobrança</h5>
+            <h:outputLabel value="CEP" />
+            <h:inputText />
+            <h:outputLabel value="Endereço" />
+            <h:inputText />
+            <h:outputLabel value="Cidade" />
+            <h:inputText />
+            <h:outputLabel value="Estado" />
+            <h:inputText />
+
+        </div>
+        </h:form>
+
+    </div>
+</div>
