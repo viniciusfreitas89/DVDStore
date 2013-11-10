@@ -1,0 +1,260 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/11/2013, 15:59:44
+    Author     : Antonio
+*/
+
+html, body{color:#000!important}
+.container-fluid{
+    width: 100%;
+    max-width:100%;
+    margin: 0;
+    padding: 0;
+}
+
+/******* CSS CABEÇALHO *******/
+.ds-header{
+    
+}
+.ds-header-01{
+    width: 100%;
+    min-height: 90px;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+        
+}
+.ds-header-02{
+    width: 100%;
+    min-height: 50px;
+    background-color: #58585A;
+    border-top: 2px solid #090;
+    box-shadow:  0 5px 5px #888888;
+}
+
+.ds-header-busca{
+    max-width: 980px;
+    margin: 0 auto;
+    background: none;
+    padding: 0;
+}
+.ds-header-busca form{
+    margin: 25px 0 0 0;
+    text-align: center;
+}
+.ds-header-busca form input[type=text]{
+    min-height: 39px!important;
+    font-size: 15px!important;
+}
+.ds-header-busca form input[type=submit]{
+    padding: 10px!important;
+    font-size: 15px!important;
+}
+
+/* MENU HEADER */
+.ds-header-menu{
+    max-width: 980px;
+    margin: 0 auto;
+    background: none;
+}
+
+.ds-menu{
+    position: relative;
+    display: block;
+}
+.ds-menu ul{
+    margin: 0;
+    padding: 0;
+    
+}
+.ds-menu ul li{
+    display: block;
+    float: left;    
+}
+.ds-menu ul li a.ds-link-menu{
+    height: 30px;
+    display: block;
+    text-align: center;
+    padding: 15px 20px 5px 20px;
+    color: #0c0;
+    
+}
+
+.ds-menu ul li a.ds-link-menu .caret{
+    border-top: 4px solid #009900!important;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+.ds-menu ul li a.ds-link-menu:hover{
+    background: #333;
+    color: #fff!important;
+    text-decoration: none;
+}
+
+/* MENU DROPDOWN GENEROS*/
+.ds-menu .ds-menudrop{    
+    position: absolute;
+    min-width:  300px;
+    min-height: 200px;
+    z-index: 9;
+    padding: 0;
+    background: #f1f1f1;
+    border-left: 1px solid #b1b1b1;
+    border-right: 1px solid #b1b1b1;
+    border-bottom: 2px solid #090;
+}
+
+.ds-titulo{
+    width: 100%;
+    min-height: 20px;
+    padding: 10px 0;
+    background: #dbdbdb;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.ds-titulo h5{
+    display: block;
+    margin: 0 10px;
+}
+.ds-generos{
+    width: 200px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+.ds-generos li{
+    position: relative;
+    display: block;
+    padding: 3px 10px;
+    clear: left;
+}
+
+
+/* CARINHO */
+.ds-header-cart{
+    min-height: 50px!important;
+    text-align: right;
+    background-color: #4d4d4d;
+    padding: 0!important;
+    
+    
+}
+/* DET CART */
+
+.ds-header-cart-det{
+    min-width: 273px;
+    min-height: 50px;
+    float: left;
+    border-left: 1px solid #333;
+    border-right: 1px solid #6B6B6D;
+    margin: 0!important;    
+    
+}
+.ds-header-cart-det b{
+    min-height: 30px!important;
+    float: left;
+    display: block;
+    color: #ccc;
+    text-align: center;
+    padding: 10px 5px;
+    margin-top: 5px;
+}
+.ic-cart-header{
+    width: 15px;
+    float: left;
+    text-align: center;
+    padding: 15px 10px;
+    background-color: #356635;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    margin: 0!important;
+    
+}
+
+/****** CSS CONTEÚDO SITE *******/
+.ds-content{
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: block;
+}
+.ds-content-centro{
+    max-width: 980px;
+    min-height: 350px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+.ds-produtos-home{
+    width: 100%;
+    min-height: 100px;
+    margin: 0!important;
+}
+.ds-produtos-home div{
+    min-height: 200px!important;
+    border: 1px solid #ccc;
+    background: #f1f1f1;
+    
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #cccc;
+    box-shadow: inset 0 0 5px #ccc;
+}
+.ds-prod span{
+    font-size: 12px;    
+    padding: 0 5px;
+    display: block;
+    margin: 0!important;
+    color: #686868;
+}
+.ds-prod .ds-prod-titulo{
+    text-align: center;
+    font-weight: normal;
+    min-height: 40px;
+    margin: 0!important;
+    
+}
+.ds-prod .ds-sinopse{
+    font-size: 12px;
+    
+}
+
+/******* CSS RODAPÉ *******/
+.ds-footer{
+    width: 100%;
+    min-height: 80px;
+    padding: 0;
+    margin: 0;
+    
+}
+.ds-footer-01{
+    width: 100%;
+    min-height: 50px;
+    background-color: #58585A;
+    border-top: 2px solid #090;
+}
+.ds-footer-menu{
+    width: 980px;
+    min-height: 50px;
+    margin: 0 auto;
+    
+}
+.ds-footer-02{
+    width: 100%;
+    min-height: 30px;
+    background-color: #686868;
+    text-align: center;
+}
+
+/******* CSS CADASTRO *******/
+.ds-login{
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 20px;
+}

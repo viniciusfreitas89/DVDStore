@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <footer>
+        <div class="ds-footer-01">
+            <div class="ds-footer-menu">
+                <nav id="mfooter" class="ds-menu span8">
+                    <ul>
+                        <li class="dropdown">
+                            <div id="ds-menudrop1" class="ds-menudrop" style="display: none;">
+                                <div class="ds-titulo"><h5>Gêneros</h5></div>
+                                <ul class="ds-generos">                                    
+                                    <li><h:link>Animação</h:link></li>
+                                    <li><h:link>Ação</h:link></li>
+                                    <li><h:link>Aventurs</h:link></li>
+                                    <li><h:link>Comédia</h:link></li>
+                                    <li><h:link>Drama</h:link></li>
+                                    <li><h:link>Terror</h:link></li>
+                                </ul>
+                            </div>
+                            <h:link class="ds-link-menu">Fimes <b class="caret"></b></h:link>
+                                                    
+                        </li>
+                        <li><h:link class="ds-link-menu">Lançamentos</h:link></li>
+                        <li><h:link class="ds-link-menu" outcome="login">Meu Cadastro</h:link></li>
+                        <li><h:link class="ds-link-menu" outcome="index">Página inicial</h:link></li>                        
+                    </ul>                    
+                </nav>                
+            </div>
+        </div>
+        <div class="ds-footer-02">
+            <small>Copyright © 2013 - DVD Store </small>
+        </div>
+            <script>
+                // rodape ds-menudrop
+                
+                jQuery('#mfooter li.dropdown').each(function () {
+                
+                    jQuery(this).hover(function () {                        
+                        //jQuery('.ds-menudrop', this).stop().slideDown('slow');
+                        jQuery('#ds-menudrop1', this).css({'margin-top':'-203px'}).stop().fadeIn('slow');
+                    },function () {
+                        jQuery('#ds-menudrop1', this).stop().fadeOut('slow');
+                    });
+                });
+                
+            </script>
+        </footer>
+    </h:body>
+</html>
+
