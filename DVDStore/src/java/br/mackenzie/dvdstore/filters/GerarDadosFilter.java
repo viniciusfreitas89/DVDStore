@@ -2,7 +2,6 @@ package br.mackenzie.dvdstore.filters;
 
 import br.mackenzie.dvdstore.dao.MidiaDAO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
-import com.sun.xml.ws.api.tx.at.Transactional;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +16,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.transaction.NotSupportedException;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 /**
@@ -49,17 +46,18 @@ public class GerarDadosFilter implements Filter {
             utx.begin();
             inserirMidias();
             utx.commit();
-            chain.doFilter(request, response);
         } catch (Exception ex) {
             Logger.getLogger(GerarDadosFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        chain.doFilter(request, response);
     }
 
     private void inserirMidias(){
         MidiaDAO dao = new MidiaDAO(em);
-        for (MidiaVO vo : (List<MidiaVO>)dao.findAll()){
-            dao.delete(vo);
-        }
+//        for (MidiaVO vo : (List<MidiaVO>)dao.findAll()){
+//            dao.delete(vo);
+//        }
         List<MidiaVO> list2 = dao.findAll();
         if (list2.isEmpty()){
             List<MidiaVO> list = Arrays.asList(

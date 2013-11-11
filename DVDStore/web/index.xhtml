@@ -1,35 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <h:head>
         <title>.: DVD Store - Index :.</title>
-        <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
-        <h:outputStylesheet name="css/estilos.css" />
-        <h:outputScript name="js/jquery-1.9.1.min.js" />
-        <h:outputScript name="bootstrap/js/bootstrap.min.js" />
-        
     </h:head>
     <h:body>
-        <!-- DEFINE O TEMPLATE DA PÁGINA -->
-        <ui:composition template="template.xhtml">
-            <!-- CABEÇALHO -->
-            <ui:define name="header">            
-                <ui:include src="header.xhtml" />
-            </ui:define>
-            <!-- CONTEÚDO -->
-            <ui:define name="content">            
-                <ui:include src="indexContent.xhtml" />
-            </ui:define>
-            <!-- RODAPÉ -->
-            <ui:define name="footer">            
-                <ui:include src="footer.xhtml" />
-            </ui:define>
-                        
-        </ui:composition>
-                  
+        <div class="ds-header row-fluid">
+            <ui:include src="header.xhtml" />
+        </div>
+        <ui:include src="indexContent.xhtml" />
+        <ui:include src="footer.xhtml" />
     </h:body>
 </html>
 

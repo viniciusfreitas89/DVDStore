@@ -1,16 +1,15 @@
 <div class="ds-site container-fluid" 
      xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:ui="http://java.sun.com/jsf/facelets">
-        
-        <h:outputStylesheet name="bootstrap/css/bootstrap.css"/>
-        <h:outputStylesheet name="css/estilos.css" />
-        <h:outputScript name="js/jquery-1.9.1.min.js" />
-        <h:outputScript name="bootstrap/js/bootstrap.min.js" />  
-        
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:h="http://java.sun.com/jsf/html">
+            
             <!-- HEADER DA PÁGINA -->
             <header>
             <div class="ds-header row-fluid">
+                <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+                <h:outputStylesheet name="css/estilos.css" />
+                <h:outputScript name="js/jquery-1.9.1.min.js" />
+                <h:outputScript name="bootstrap/js/bootstrap.min.js" />
                 <ui:insert name="header">
                         Padrão header                    
                 </ui:insert>
