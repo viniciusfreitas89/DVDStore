@@ -2,6 +2,7 @@ package br.mackenzie.dvdstore.filters;
 
 import br.mackenzie.dvdstore.dao.MidiaDAO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
+import com.sun.xml.ws.api.tx.at.Transactional;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +17,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 
 /**
@@ -32,6 +28,8 @@ import javax.transaction.UserTransaction;
 public class GerarDadosFilter implements Filter {
     @PersistenceContext()
     private EntityManager em;
+    @Resource 
+    private UserTransaction utx; 
     
     private FilterConfig filterConfig = null;
     
@@ -43,14 +41,18 @@ public class GerarDadosFilter implements Filter {
         System.out.println("GerarDadosFilter Inicializado");
     }
     
-    @Transactional
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
+        try {            
+            utx.begin();
             inserirMidias();
-            
+            utx.commit();
             chain.doFilter(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(GerarDadosFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void inserirMidias(){
@@ -58,8 +60,8 @@ public class GerarDadosFilter implements Filter {
 //        for (MidiaVO vo : (List<MidiaVO>)dao.findAll()){
 //            dao.delete(vo);
 //        }
-        List<MidiaVO> list2 = dao.findAll();
-        if (list2.isEmpty()){
+//        List<MidiaVO> list2 = dao.findAll();
+//        if (list2.isEmpty()){
             List<MidiaVO> list = Arrays.asList(
                             new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f),
                             new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f),
@@ -78,7 +80,7 @@ public class GerarDadosFilter implements Filter {
             for (MidiaVO vo : list){
                 dao.create(vo);
             }
-        }
+//        }
     }
 
     @Override

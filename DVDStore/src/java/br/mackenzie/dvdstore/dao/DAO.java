@@ -8,11 +8,11 @@ import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -27,7 +27,6 @@ public class DAO <T> implements Serializable {
         this.em = emf;
     }
 
-    @Transactional
     public void create(T t) {
         em.persist(t);
     }

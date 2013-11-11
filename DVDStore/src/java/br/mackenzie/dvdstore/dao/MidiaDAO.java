@@ -6,7 +6,6 @@ package br.mackenzie.dvdstore.dao;
 
 import br.mackenzie.dvdstore.vo.MidiaVO;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 /**
  *
@@ -22,8 +21,7 @@ public class MidiaDAO extends DAO{
         this(MidiaVO.class, em);
     }
     
-    @Transactional
-     public void create(MidiaVO t) {
-        em.persist(t);
+     public void insert(MidiaVO t) {
+        this.create(t);
     }
 }
