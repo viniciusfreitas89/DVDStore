@@ -57,11 +57,11 @@ public class GerarDadosFilter implements Filter {
 
     private void inserirMidias(){
         MidiaDAO dao = new MidiaDAO(em);
-//        for (MidiaVO vo : (List<MidiaVO>)dao.findAll()){
-//            dao.delete(vo);
-//        }
-//        List<MidiaVO> list2 = dao.findAll();
-//        if (list2.isEmpty()){
+        for (MidiaVO vo : (List<MidiaVO>)dao.findAll()){
+            dao.delete(vo);
+        }
+        List<MidiaVO> list2 = dao.findAll();
+        if (list2.isEmpty()){
             List<MidiaVO> list = Arrays.asList(
                             new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f),
                             new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f),
@@ -80,7 +80,7 @@ public class GerarDadosFilter implements Filter {
             for (MidiaVO vo : list){
                 dao.create(vo);
             }
-//        }
+        }
     }
 
     @Override
