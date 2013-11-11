@@ -9,16 +9,16 @@
     <br />
 
     <div class="ds-produtos-home row">
-        <ui:repeat var="cli" value="#{produtoManagedBean.produtosBean}">
+        <ui:repeat var="item" value="#{midiaManagedBean.listarFilmes}">
             <div class="ds-prod" style="width: 150px; float: left; margin: 5px">
                 <h:form>
                     <h:outputLink value="detalhe.xhtml" >
                         <h:graphicImage name="images/imgNotFound.png" />
-                        <f:param name="id" value="#{cli.id}" />
+                        <f:param name="idFilme" value="#{item.id}" />
                     </h:outputLink>
-                    <h5 class="ds-prod-titulo"><h:outputText value="#{cli.titulo}" /></h5>                
-                    <span>Gênero <b><h:outputText value="#{cli.genero}" /></b></span>
-                    <span>preço R$ <h:outputText value="#{cli.valor}" /></span>
+                    <h5 class="ds-prod-titulo"><h:outputText value="#{item.titulo}" /></h5>                
+                    <span>Gênero <b></b></span>
+                    <span>preço R$ <h:outputText value="#{item.valorUnitario}" /></span>
                     <br />
                     <span class="ds-sinopse"><b>sinopse</b> <h:outputText value="#{cli.comentario}" /></span>
                 </h:form>
