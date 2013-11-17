@@ -5,9 +5,6 @@ import br.mackenzie.dvdstore.vo.MidiaVO;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.Filter;
@@ -16,7 +13,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.transaction.UserTransaction;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -25,8 +22,6 @@ import javax.transaction.UserTransaction;
 public class GerarDadosFilter implements Filter {
     @PersistenceContext()
     private EntityManager em;
-    @Resource 
-    private UserTransaction utx; 
     
     private FilterConfig filterConfig = null;
     
@@ -38,17 +33,12 @@ public class GerarDadosFilter implements Filter {
         System.out.println("GerarDadosFilter Inicializado");
     }
     
-    @Override
+    @Transactional
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        try {            
-            utx.begin();
-            inserirMidias();
-            utx.commit();
-        } catch (Exception ex) {
-            Logger.getLogger(GerarDadosFilter.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        inserirMidias();
         
         chain.doFilter(request, response);
     }

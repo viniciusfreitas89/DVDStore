@@ -1,44 +1,48 @@
 <div class="ds-content-centro row-fluid"
      xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html">
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h4>Cadastro</h4>
     <br />
+    <div>
+        <h:messages globalOnly="true" class="alert alert-success"/>
+        <br/>
+        <br/>
+    </div>
     <div class="ds-login row">
         <h:form>
-        <div class="ds-coluna1 span5">
-
+            <h:inputHidden id="id" value="#{pessoaManagedBean.pessoa.id}"/>
+            <div class="ds-coluna1 span5">
                 <h5>Meus dados</h5>
                 <h:outputLabel value="Nome Completo" />
-                <h:inputText></h:inputText>                        
+                <h:inputText value="#{pessoaManagedBean.pessoa.nome}" class="form-control" pt:placeholder="Informe o nome" pt:required="true"/>
                 <h:outputLabel value="CPF" />
-                <h:inputText></h:inputText>
+                <h:inputText value="#{pessoaManagedBean.pessoa.cpf}" class="form-control" pt:placeholder="Informe o CPF" pt:required="true"/>
                 <h:outputLabel value="Telefone" />
-                <h:inputText />
+                <h:inputText value="#{pessoaManagedBean.pessoa.telefone}" pt:placeholder="Informe o Telefone"/>
 
                 <h5>Dados de acesso</h5>
                 <h:outputLabel value="E-mail" />
-                <h:inputText />
+                <h:inputText value="#{pessoaManagedBean.pessoa.email}" class="form-control" pt:placeholder="Informe o e-mail" pt:required="true"/>
                 <h:outputLabel value="Senha" />
-                <h:inputSecret />
-                <h:outputLabel value="Confirme a senha" />
-                <h:inputSecret />
+                <h:inputSecret value="#{pessoaManagedBean.pessoa.senha}" class="form-control" pt:placeholder="Informe a senha" pt:required="true"/>
+                <h:outputLabel value="Confirme a senha"/>
+                <h:inputSecret class="form-control" pt:placeholder="Informe a senha novamente" pt:required="true"/>
                 <br/>
-                <h:commandButton class="btn btn-success" value="Continuar >>" />                     
+                <h:commandButton class="btn btn-success" value="Continuar >>" action="#{pessoaManagedBean.cadastrar()}"/>                     
 
-        </div>
-        <div class="ds-coluna2 span6">
-            <h5>Endereço de cobrança</h5>
-            <h:outputLabel value="CEP" />
-            <h:inputText />
-            <h:outputLabel value="Endereço" />
-            <h:inputText />
-            <h:outputLabel value="Cidade" />
-            <h:inputText />
-            <h:outputLabel value="Estado" />
-            <h:inputText />
-
-        </div>
+            </div>
+            <div class="ds-coluna2 span6">
+                <h5>Endereço de cobrança</h5>
+                <h:outputLabel value="CEP" />
+                <h:inputText value="#{pessoaManagedBean.pessoa.cep}"/>
+                <h:outputLabel value="Endereço" />
+                <h:inputText value="#{pessoaManagedBean.pessoa.logradouro}"/>
+                <h:outputLabel value="Cidade" />
+                <h:inputText value="#{pessoaManagedBean.pessoa.cidade}"/>
+                <h:outputLabel value="Estado" />
+                <h:inputText value="#{pessoaManagedBean.pessoa.uf}"/>
+            </div>
         </h:form>
-
     </div>
 </div>

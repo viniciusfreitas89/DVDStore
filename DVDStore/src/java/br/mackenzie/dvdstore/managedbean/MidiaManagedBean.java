@@ -29,6 +29,9 @@ public class MidiaManagedBean {
     }
     
     public List<MidiaVO> getListarFilmes(){
+        System.out.println("Listar");
+        
+        System.out.println("Size: "+bean.listar().size());
         return bean.listar();
     }
     
