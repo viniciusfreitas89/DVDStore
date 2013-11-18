@@ -262,3 +262,7 @@ html, body{color:#000!important}
 ul.alert{
     list-style-type: none;
 }
+
+.text-center{
+    text-align: center;
+}

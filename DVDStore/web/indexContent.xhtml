@@ -11,10 +11,10 @@
         <ui:repeat var="item" value="#{midiaManagedBean.listarFilmes}">
             <div class="ds-prod" style="width: 150px; float: left; margin: 5px">
                 <h:form>
-                    <h:outputLink value="detalhe.xhtml" >
+                    <h:commandLink id="hLink" action="#{midiaManagedBean.mostrarFilme(item.id)}">
                         <h:graphicImage name="images/imgNotFound.png" />
                         <f:param name="idFilme" value="#{item.id}" />
-                    </h:outputLink>
+                    </h:commandLink>
                     <h5 class="ds-prod-titulo"><h:outputText value="#{item.titulo}" /></h5>                
                     <span>Gênero <b></b></span>
                     <span>preço R$ <h:outputText value="#{item.valorUnitario}" /></span>

@@ -23,7 +23,7 @@ public class MidiaManagedBean {
     @EJB
     private MidiaService bean;
     @Getter @Setter
-    private Long idFilme;
+    private MidiaVO vo;
     
     public MidiaManagedBean() {
     }
@@ -35,9 +35,9 @@ public class MidiaManagedBean {
         return bean.listar();
     }
     
-    public String mostrarFilme(){
-        System.out.println("Id: "+idFilme);
+    public String mostrarFilme(Long idFilme){
+        vo = bean.procurar(idFilme);
+        System.out.println("idFilme: "+vo);
         return "detalhe.xhtml";
-//        return bean.procurar(idFilme);
     }
 }

@@ -1,23 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-    </h:head>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
         <div class="ds-content-centro row-fluid">
             <br />
             <div class="row">
-                <div class="span6">
-                    <div>
-                         <h4>Nome do Produto</h4>
+                <div class="span3">
+                    <div class="text-center">
+                        
                         <h:graphicImage name="images/imgNotFound.png" />
                     </div>
                 </div>
-                <div class="span3">
+                <div class="span8">
                     <div>
-                        <span>as asa s as asas a</span>
-                         <span>as asasasasasas</span>
+                        <div>
+                             <b>#{midiaManagedBean.vo.id} - #{midiaManagedBean.vo.titulo}</b>
+                        </div>
+                        <div>
+                            #{midiaManagedBean.vo.descricao}
+                        </div>
+                        <br/>
+                        <div >
+                            <span class="alert alert-success">
+                                R$ <h:outputText value="#{midiaManagedBean.vo.valorUnitario}">
+                                <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00"/>
+                            </h:outputText>
+                            </span>    
+                        </div>
+                        <br/>
+                        <br/>
+                        <h:form>
+                            <input type="hidden" name="idFilme" value="#{midiaManagedBean.vo.id}"/>
+                            <h:commandButton class="btn btn-success" value="Adicionar ao carrinho" action="#{carrinhoManagedBean.adicionar()}"/>
+                        </h:form>
                     </div>
                 </div>
             </div>

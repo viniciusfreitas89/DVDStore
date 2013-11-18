@@ -19,6 +19,7 @@ import javax.persistence.PersistenceContext;
 public class MidiaService {
     @PersistenceContext
     private EntityManager em;
+    private Long idFilme;
     
     public List<MidiaVO> listar(){
        MidiaDAO dao = new MidiaDAO(em);
