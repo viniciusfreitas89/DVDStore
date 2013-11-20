@@ -266,3 +266,24 @@ ul.alert{
 .text-center{
     text-align: center;
 }
+
+/* ESTLIOS ADM */
+
+.ds-hr{
+    width: 99%;
+    height: 1px;
+    position: relative;
+    background: #ccc;
+    margin: 10px auto;
+}
+.ds-content-adm{
+    max-width: 980px;
+    min-height: 150px;
+    margin: 0 auto;
+}
+
+
+.ds-content-adm .ds-menu-left, .ds-content-adm .ds-content-left{ float: left; position: relative}
+.ds-content-adm .ds-menu-left{padding: 30px 0}
+
+.ds-titulo-adm{font-size:16px; font-weight: normal; margin: 30px 0 0 0}
