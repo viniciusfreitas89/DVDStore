@@ -6,12 +6,13 @@
 
 package br.mackenzie.dvdstore.vo;
 
-import javax.annotation.Generated;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,9 +22,15 @@ import lombok.Setter;
  */
 @Entity
 @Table(name="Generos")
-public class GenerosVO {
+@TableGenerator(name="GENEROS_TABLE_GENERATOR", 
+                table = "SEQUENCE_GENERATOR", 
+                pkColumnName = "SEQUENCE_NAME",
+                pkColumnValue = "GENEROS_SEQUENCE",
+                valueColumnName = "SEQUENCE_VALUE",
+                allocationSize = 1)
+public class GenerosVO implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "GENEROS_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
     @Getter @Setter

@@ -5,6 +5,7 @@
 package br.mackenzie.dvdstore.dao;
 
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
+import com.sun.xml.ws.api.tx.at.Transactional;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,14 +27,17 @@ public class DAO <T> implements Serializable {
         this.em = emf;
     }
 
+    @Transactional
     public void create(T t) {
         em.persist(t);
     }
 
+    @Transactional
     public void update(T t) {
         t = em.merge(t);
     }
 
+    @Transactional
     public void delete(Long id) throws NonexistentEntityException{
         T t;
         try {
@@ -44,6 +48,7 @@ public class DAO <T> implements Serializable {
         em.remove(t);
     }
     
+    @Transactional
     public void delete(T t){
         em.remove(t);
     }
@@ -56,6 +61,7 @@ public class DAO <T> implements Serializable {
         return findAll(false, maxResults, firstResult);
     }
 
+    @Transactional
     private List<T> findAll(boolean all, int maxResults, int firstResult) {
         try{
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
@@ -77,6 +83,7 @@ public class DAO <T> implements Serializable {
         return (T) em.find(type, id);
     }
 
+    @Transactional
     public int getCount() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         Root<T> rt = cq.from(type);

@@ -20,16 +20,23 @@ import lombok.Getter;
 import lombok.Setter;
 import br.mackenzie.dvdstore.enumpack.MidiaEnum;
 import javax.persistence.Enumerated;
+import javax.persistence.TableGenerator;
 /**
  *
  * @author 71306552
  */
 @Entity
 @Table(name="MIDIAS")
+@TableGenerator(name="MIDIAS_TABLE_GENERATOR", 
+                table = "SEQUENCE_GENERATOR", 
+                pkColumnName = "SEQUENCE_NAME",
+                pkColumnValue = "MIDIAS_SEQUENCE",
+                valueColumnName = "SEQUENCE_VALUE",
+                allocationSize = 1)
 public class MidiaVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "MIDIAS_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
     @ManyToOne

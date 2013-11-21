@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,10 +21,16 @@ import lombok.Setter;
  */
 @Entity
 @Table(name="PESSOAS")
+@TableGenerator(name="PESSOAS_TABLE_GENERATOR", 
+                table = "SEQUENCE_GENERATOR", 
+                pkColumnName = "SEQUENCE_NAME",
+                pkColumnValue = "PESSOAS_SEQUENCE",
+                valueColumnName = "SEQUENCE_VALUE",
+                allocationSize = 1)
 public class PessoaVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PESSOAS_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
     @Getter @Setter

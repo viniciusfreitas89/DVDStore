@@ -29,15 +29,11 @@ public class MidiaManagedBean {
     }
     
     public List<MidiaVO> getListarFilmes(){
-        System.out.println("Listar");
-        
-        System.out.println("Size: "+bean.listar().size());
         return bean.listar();
     }
     
     public String mostrarFilme(Long idFilme){
         vo = bean.procurar(idFilme);
-        System.out.println("idFilme: "+vo);
         return "detalhe.xhtml";
     }
 }

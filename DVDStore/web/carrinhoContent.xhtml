@@ -4,14 +4,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
-        <div class="ds-content-centro row-fluid">
+        <div id="carrinho-content" class="ds-content-centro row-fluid">
             <br />
             <div class="row">
                 <h4>Carrinho</h4>
                 <div class="span12">
                     <f:view>
                         <h:form>
-                            <h:dataTable class="table" value="#{carrinhoManagedBean.midias}" var="item">
+                            <h:dataTable class="table" value="#{carrinhoManagedBean.itens}" var="item">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Id"/>
@@ -26,9 +26,27 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
+                                        <h:outputText value="Quantidade"/>
+                                    </f:facet>
+                                    <h:inputText class="qtde" readonly="true" value="#{item.quantidade}"/>
+                                    <div class="group-arrow">
+                                        <h:commandButton class="arrow up" action="#{carrinhoManagedBean.incrementarQuantidade(item.id)}"/>
+                                        <h:commandButton class="arrow down" action="#{carrinhoManagedBean.decrementarQuantidade(item.id)}"/>
+                                    </div>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
                                         <h:outputText value="Valor Unitário"/>
                                     </f:facet>
                                     R$ <h:outputText value="#{item.valorUnitario}">
+                                        <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Total"/>
+                                    </f:facet>
+                                    R$ <h:outputText value="#{item.total}">
                                         <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00"/>
                                     </h:outputText>
                                 </h:column>
@@ -37,6 +55,9 @@
                     </f:view>
 
                 </div> 
+                <h:form>
+                    <h:commandButton class="btn btn-success right" value="Finalizar Pedido"/>
+                </h:form>
             </div>
         </div>
     </h:body>
