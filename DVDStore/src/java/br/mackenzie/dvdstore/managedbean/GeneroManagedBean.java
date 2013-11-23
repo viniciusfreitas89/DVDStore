@@ -41,9 +41,12 @@ public class GeneroManagedBean {
     }
     
     public void atualizar(Long id){
+        String nome = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nome"+id);
         genero.setId(id);
-        genero.setNome(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nome"));
+        genero.setNome(nome);
         bean.atualizar(genero);
+        genero = new GenerosVO();
+        
         addSucessMessage("Atualizado com sucesso.");
     }
     
