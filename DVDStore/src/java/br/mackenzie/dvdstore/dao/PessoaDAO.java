@@ -4,7 +4,6 @@
  */
 package br.mackenzie.dvdstore.dao;
 
-import br.mackenzie.dvdstore.vo.MidiaVO;
 import br.mackenzie.dvdstore.vo.PessoaVO;
 import javax.persistence.EntityManager;
 

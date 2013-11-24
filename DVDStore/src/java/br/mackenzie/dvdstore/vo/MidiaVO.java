@@ -22,9 +22,7 @@ import br.mackenzie.dvdstore.enumpack.MidiaEnum;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.ConstraintMode;
 import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -48,7 +46,13 @@ import javax.persistence.TableGenerator;
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.titulo"),
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.maior-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario desc"),
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc"),
-    @NamedQuery(name="Midia.filtrar.titulo.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc")
+    @NamedQuery(name="Midia.filtrar.titulo.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc"),
+    
+    @NamedQuery(name="Midia.filtrar.titulo-genero", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2"),
+    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.titulo"),
+    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.maior-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario desc"),
+    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario asc"),
+    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario asc")
 })
 public class MidiaVO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -79,7 +83,7 @@ public class MidiaVO implements Serializable {
     @Enumerated
     @Getter @Setter
     private MidiaEnum tipo;
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE })
     @JoinTable(name = "MIDIA_ATORES", 
                joinColumns = {@JoinColumn(name = "ID_MIDIA")},
                inverseJoinColumns = {@JoinColumn(name = "ID_ATOR")})
@@ -108,11 +112,12 @@ public class MidiaVO implements Serializable {
         idiomas = new ArrayList<IdiomaVO>();
         atores = new ArrayList<AtoresTesteVO>();
     }
-    public MidiaVO(String titulo, String descricao, Float valorUnitario){
+    public MidiaVO(String titulo, String descricao, Float valorUnitario, GenerosVO genero){
         this.titulo = titulo;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
         this.tipo = MidiaEnum.DVD;
+        this.genero = genero;
         
         idiomas = new ArrayList<IdiomaVO>();
         atores = new ArrayList<AtoresTesteVO>();

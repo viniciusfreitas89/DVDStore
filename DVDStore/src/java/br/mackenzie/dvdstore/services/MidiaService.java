@@ -6,6 +6,7 @@ package br.mackenzie.dvdstore.services;
 
 import br.mackenzie.dvdstore.dao.MidiaDAO;
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
+import br.mackenzie.dvdstore.vo.GenerosVO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -31,9 +32,9 @@ public class MidiaService {
        return dao.findAll(numeroResultados, 0);
     }
     
-    public List<MidiaVO> filtrarPorTitulo(String titulo, OrdemBuscaEnum order){
+    public List<MidiaVO> filtrarPorTitulo(String titulo, OrdemBuscaEnum order, GenerosVO genero){
        MidiaDAO dao = new MidiaDAO(em);
-       return dao.filtrarPorTitulo(titulo, order);
+       return dao.filtrarPorTitulo(titulo, order, genero);
     }
     
     public MidiaVO procurar(Long id){

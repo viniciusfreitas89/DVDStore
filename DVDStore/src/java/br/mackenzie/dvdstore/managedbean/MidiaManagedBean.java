@@ -93,20 +93,15 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     }
     
     public String filtrarPorTitulo(){
-        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order));
+        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order), null);
         return "busca.xhtml";
     }
     
-    public String filtrarPorTituloGenero(){
+    public String filtrarPorTituloGenero(Long idGenero){
         termoBusca = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("termoBusca");
         String ord = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("order");
         order = Integer.parseInt(ord);
-        System.out.println();
-        System.out.println();
-        System.out.println("##############");
-        System.out.println(termoBusca);
-        System.out.println(order);
-        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order));
+        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order), beanGenero.procurar(idGenero));
         return "busca.xhtml";
     }
 }

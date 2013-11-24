@@ -12,7 +12,7 @@
                         <h:form>
                             <input type="hidden" name="termoBusca" value="#{midiaManagedBean.termoBusca}"/>
                             <input type="hidden" name="order"     value="#{midiaManagedBean.order}"/>
-                            <h:commandButton value="#{item.nome}" action="#{midiaManagedBean.filtrarPorTituloGenero}" />
+                            <h:commandButton value="#{item.nome}" action="#{midiaManagedBean.filtrarPorTituloGenero(item.id)}" />
                         </h:form>
                     </li>
                 </ui:repeat>
@@ -27,10 +27,8 @@
                             <f:param name="idFilme" value="#{item.id}" />
                         </h:commandLink>
                         <h5 class="ds-prod-titulo"><h:outputText value="#{item.titulo}" /></h5>                
-                        <span>Gênero <b></b></span>
+                        <span>Gênero <b>#{item.genero.nome}</b></span>
                         <span>preço R$ <h:outputText value="#{item.valorUnitario}" /></span>
-                        <br />
-                        <span class="ds-sinopse"><b>sinopse</b> <h:outputText value="#{cli.comentario}" /></span>
                     </h:form>
                 </div> 
             </ui:repeat>

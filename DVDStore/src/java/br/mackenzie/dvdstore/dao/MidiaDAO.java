@@ -5,6 +5,7 @@
 package br.mackenzie.dvdstore.dao;
 
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
+import br.mackenzie.dvdstore.vo.GenerosVO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,27 +27,46 @@ public class MidiaDAO extends DAO{
     }
     
     @Transactional
-    public List<MidiaVO> filtrarPorTitulo(String titulo, OrdemBuscaEnum order){
+    public List<MidiaVO> filtrarPorTitulo(String titulo, OrdemBuscaEnum order, GenerosVO genero){
         System.out.println(order);
         Query q = null;
-        if (order.equals(OrdemBuscaEnum.NONE)){
-            q = em.createNamedQuery("Midia.filtrar.titulo");
-        }else{
-            switch (order){
-                case TITULO: {
-                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.titulo"); break;
+        switch (order){
+            case TITULO: {
+                if (genero==null){
+                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.titulo");
+                }else{
+                    q = em.createNamedQuery("Midia.filtrar.titulo-genero.ordenado.titulo");
+                    q.setParameter("param2", genero);
                 }
-                case MAIOR_PRECO:{
-                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.maior-preco"); break;
-                }
-                case MENOR_PRECO:{
-                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.menor-preco"); break;
-                }
-//                case MAIS_VENDIDOS:{
-//                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.mais-vendido"); break;
-//                }
-                default: q = em.createNamedQuery("Midia.filtrar.titulo"); break;
+                break;
             }
+            case MAIOR_PRECO:{
+                if (genero==null){
+                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.maior-preco");
+                }else{
+                    q = em.createNamedQuery("Midia.filtrar.titulo-genero.ordenado.maior-preco");
+                    q.setParameter("param2", genero);
+                }
+                break;
+            }
+            case MENOR_PRECO:{
+                if (genero==null){
+                    q = em.createNamedQuery("Midia.filtrar.titulo.ordenado.menor-preco");
+                }else{
+                    q = em.createNamedQuery("Midia.filtrar.titulo-genero.ordenado.menor-preco");
+                    q.setParameter("param2", genero);
+                }
+                break;
+            }
+            default: {
+                if (genero==null){
+                    q = em.createNamedQuery("Midia.filtrar.titulo");
+                }else{
+                    q = em.createNamedQuery("Midia.filtrar.titulo-genero");
+                    q.setParameter("param2", genero);
+                }
+                break;
+            } 
         }
         q.setParameter("param1", ("%"+titulo+"%").toLowerCase());
         
