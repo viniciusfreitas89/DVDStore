@@ -26,23 +26,23 @@ import lombok.Setter;
  * @author Vinicius
  */
 @Entity
-@Table(name="IDIOMAS")
-@TableGenerator(name="IDIOMAS_TABLE_GENERATOR", 
+@Table(name="ATORES")
+@TableGenerator(name="ATORES_TABLE_GENERATOR", 
                 table = "SEQUENCE_GENERATOR", 
                 pkColumnName = "SEQUENCE_NAME",
-                pkColumnValue = "IDIOMAS_SEQUENCE",
+                pkColumnValue = "ATORES_SEQUENCE",
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
-public class IdiomaVO implements Serializable {
+public class AtoresTesteVO implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "IDIOMAS_TABLE_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ATORES_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
     @Getter @Setter
     private String nome;
     @ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="MIDIA_IDIOMAS",
-                joinColumns=@JoinColumn(name="ID_IDIOMA"),
+    @JoinTable(name="MIDIA_ATORES",
+                joinColumns=@JoinColumn(name="ID_ATOR"),
                 inverseJoinColumns=@JoinColumn(name="ID_MIDIA"))
     @Getter @Setter
     private List<MidiaVO> midias;
@@ -56,10 +56,10 @@ public class IdiomaVO implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof IdiomaVO)) {
+        if (!(object instanceof AtoresTesteVO)) {
             return false;
         }
-        IdiomaVO other = (IdiomaVO) object;
+        AtoresTesteVO other = (AtoresTesteVO) object;
         if ((this.id == null && other.id!= null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

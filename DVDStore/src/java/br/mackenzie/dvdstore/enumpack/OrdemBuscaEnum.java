@@ -4,21 +4,23 @@ package br.mackenzie.dvdstore.enumpack;
  *
  * @author Vinicius
  */
-public enum MidiaEnum {
-    DVD(1, "DVD"),
-    BLU_RAY(2, "Blu-Ray");
+public enum OrdemBuscaEnum {
+    MENOR_PRECO(1, "Menor Preço"),
+    MAIOR_PRECO(2, "Maior Preço"),
+    TITULO(3, "Titulo"),
+    MAIS_VENDIDOS(4, "Mais Vendidos");
     
     private Integer id;
     private String description;
     
-    MidiaEnum(Integer id, String description){
+    OrdemBuscaEnum(Integer id, String description){
         this.id = id;
         this.description = description;
     }
     
-    public static MidiaEnum valueOf(Integer id){
-       MidiaEnum[] values = values();
-       for (MidiaEnum obj : values){
+    public static OrdemBuscaEnum valueOf(Integer id){
+       OrdemBuscaEnum[] values = values();
+       for (OrdemBuscaEnum obj : values){
            if (obj.id.equals(id)){
                return obj;
            }

@@ -12,59 +12,63 @@
         
         <ui:composition template="./templateAdm.xhtml">            
             <ui:define name="content">
-            
                 <div class="row">
                     <h5 class="ds-titulo-adm">Cadastro de filme</h5>
                     <div class="ds-hr"></div>
                 </div>
-            
                 
                 <h:form enctype="multipart/form-data">
                 <div class="row"> 
                     <!-- DIV DA ESQUERDA -->
                     <div class="span6" style="position: relative">
                         <h:outputLabel value="Titulo do filme" />
-                        <h:inputText pt:placeholder="Informe o nome do filme" value="" />
+                        <h:inputText  pt:placeholder="Informe o nome do filme" value="#{midiaManagedBean.vo.titulo}" />
 
                         <h:outputLabel value="Genêro" />
-                        <h:selectOneMenu value="">
-                            <f:selectItem itemValue="1" itemLabel="Item 1" />
-                            <f:selectItem itemValue="2" itemLabel="Item 2" />
+                        <h:selectOneMenu value="#{midiaManagedBean.idGenero}" >
+                            <f:selectItem itemValue="" itemLabel="Selecione" />
+                            <f:selectItems value="#{generoManagedBean.generos}"
+                                var="item"
+                                itemValue="#{item.id}"
+                                itemLabel="#{item.nome}"
+                                itemLabelEscaped="true"
+                                noSelectionValue=""/>
                         </h:selectOneMenu>
 
                         <h:outputLabel value="Tipo de Mídia" />
-                        <h:selectOneMenu value="">
-                            <f:selectItem itemValue="0" itemLabel="DVD" />
-                            <f:selectItem itemValue="1" itemLabel="Blu-Ray" />
+                        <h:selectOneMenu value="#{midiaManagedBean.tipoMidia}">
+                            <f:selectItem itemValue="" itemLabel="Selecione" />
+                            <f:selectItems value="#{midiaManagedBean.tipos}"
+                                var="item"
+                                itemValue="#{item.id}"
+                                itemLabel="#{item.description}"
+                                itemLabelEscaped="true"
+                                noSelectionValue=""/>
                         </h:selectOneMenu>
 
                         <h:outputLabel value="Idioma" />
-                        <h:selectManyListbox size="6" value="">
-                            <f:selectItem itemValue="1" itemLabel="Item 1" />
-                            <f:selectItem itemValue="2" itemLabel="Item 2" />
-                            <f:selectItem itemValue="3" itemLabel="Item 3" />
+                        <h:selectManyListbox size="6" value="#{midiaManagedBean.idiomas}" converter="javax.faces.Long">
+                            <f:selectItems value="#{idiomaManagedBean.idiomas}"
+                                            var="item"
+                                            itemValue="#{item.id}"
+                                            itemLabel="#{item.nome}"
+                                            itemLabelEscaped="true"
+                                            noSelectionValue=""/>
                          </h:selectManyListbox>
                     </div>
                     <!-- DIV DA DIREITA -->    
                     <div class="span6" style="position: relative">
                         <h:outputLabel value="Estoque" />
-                        <h:inputText pt:placeholder="0" value="" />
+                        <h:inputText pt:placeholder="0" value="#{midiaManagedBean.vo.estoque}" />
 
                         <h:outputLabel value="Preço" />
-                        <h:inputText pt:placeholder="0.00" value="" /> 
+                        <h:inputText pt:placeholder="0.00" value="#{midiaManagedBean.vo.valorUnitario}" /> 
 
                         <h:outputLabel value="Atores" />
-                        <h:selectManyListbox size="6" value="">
-                            <f:selectItem itemValue="1" itemLabel="Item 1" />
-                            <f:selectItem itemValue="2" itemLabel="Item 2" />
-                            <f:selectItem itemValue="3" itemLabel="Item 3" />
-                            <f:selectItem itemValue="1" itemLabel="Item 1" />
-                            <f:selectItem itemValue="2" itemLabel="Item 2" />
-                            <f:selectItem itemValue="3" itemLabel="Item 3" />
-                            <f:selectItem itemValue="3" itemLabel="Item 3" />
-                            <f:selectItem itemValue="1" itemLabel="Item 1" />
-                            <f:selectItem itemValue="2" itemLabel="Item 2" />
-                            <f:selectItem itemValue="3" itemLabel="Item 3" />
+                        <h:selectManyListbox size="6" value="#{midiaManagedBean.atores}" converter="javax.faces.Long">
+                            <f:selectItem itemValue="1" itemLabel="Tom" />
+                            <f:selectItem itemValue="2" itemLabel="Angelina" />
+                            <f:selectItem itemValue="3" itemLabel="Mary" />
                         </h:selectManyListbox>
                      </div>
                 </div>
@@ -72,13 +76,13 @@
                 <!-- SINOPSE E ENVIO DE ARQUIVO -->
                 <div class="row">
                     <h:outputLabel value="Sinopse do filme" />
-                    <h:inputTextarea pt:placeholder="Descrição..." class="span12" style="min-height: 150px"  value="" />
+                    <h:inputTextarea pt:placeholder="Descrição..." class="span12" style="min-height: 150px"  value="#{midiaManagedBean.vo.descricao}" />
                     
                     <h:outputLabel value="Imagem da capa" />
                     <h:inputFile />
                     
                     <br /><br />
-                    <h:commandButton value="Incluir novo prouto" class="btn btn-success" />
+                    <h:commandButton value="Incluir novo prouto" class="btn btn-success" action="#{midiaManagedBean.incluir}"/>
                 </div>
                 </h:form>            
             

@@ -59,9 +59,7 @@ ul.alert{
     padding: 5px;
     margin-top: 8px;
 }
-
 /******* CSS CABEÇALHO *******/
-
 .ds-header-01{
     width: 100%;
     min-height: 90px;
@@ -92,9 +90,13 @@ ul.alert{
     min-height: 42px!important;
     font-size: 15px!important;
 }
-.ds-header-busca form input[type=submit]{
+.ds-header-busca form .btn-buscar{
     padding: 10px!important;
     font-size: 15px!important;
+    display: inline-block;
+    float: right;
+    margin-left: 0;
+    
 }
 
 /* MENU HEADER */

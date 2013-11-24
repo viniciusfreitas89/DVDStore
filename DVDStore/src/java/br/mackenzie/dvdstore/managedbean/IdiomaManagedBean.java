@@ -26,7 +26,7 @@ import lombok.Setter;
  */
 @ManagedBean
 @RequestScoped
-public class IdiomaManagedBean {
+public class IdiomaManagedBean extends ManagedBeanDefault{
     @EJB
     private IdiomaService bean;
     @Getter @Setter
@@ -63,9 +63,5 @@ public class IdiomaManagedBean {
     
     public List<IdiomaVO> getIdiomas(){
         return bean.listar();
-    }
-    private void addSucessMessage(String sucesso) {
-        FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, sucesso, sucesso);
-        FacesContext.getCurrentInstance().addMessage(null, m);
     }
 }

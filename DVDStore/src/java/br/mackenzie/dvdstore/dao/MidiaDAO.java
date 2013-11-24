@@ -5,7 +5,10 @@
 package br.mackenzie.dvdstore.dao;
 
 import br.mackenzie.dvdstore.vo.MidiaVO;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -21,7 +24,10 @@ public class MidiaDAO extends DAO{
         this(MidiaVO.class, em);
     }
     
-     public void insert(MidiaVO t) {
-        this.create(t);
+    @Transactional
+    public List<MidiaVO> filtrarPorTitulo(String titulo){
+        Query q = em.createNamedQuery("Midia.filtrar.titulo");
+        q.setParameter("titulo", "%"+titulo+"%");
+        return q.getResultList();
     }
 }

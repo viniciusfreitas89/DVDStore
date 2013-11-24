@@ -7,12 +7,10 @@ package br.mackenzie.dvdstore.managedbean;
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
 import br.mackenzie.dvdstore.services.GeneroService;
 import br.mackenzie.dvdstore.vo.GenerosVO;
-import com.sun.xml.ws.api.tx.at.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -25,7 +23,7 @@ import lombok.Setter;
  */
 @ManagedBean
 @RequestScoped
-public class GeneroManagedBean {
+public class GeneroManagedBean extends ManagedBeanDefault{
     @EJB
     private GeneroService bean;
     @Getter @Setter
@@ -62,10 +60,5 @@ public class GeneroManagedBean {
     
     public List<GenerosVO> getGeneros(){
         return bean.listar();
-    }
-    
-    private void addSucessMessage(String sucesso) {
-        FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, sucesso, sucesso);
-        FacesContext.getCurrentInstance().addMessage(null, m);
     }
 }

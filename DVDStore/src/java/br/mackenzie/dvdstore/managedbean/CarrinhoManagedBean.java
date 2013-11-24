@@ -23,7 +23,7 @@ import lombok.Setter;
  */
 @ManagedBean
 @SessionScoped
-public class CarrinhoManagedBean {
+public class CarrinhoManagedBean extends ManagedBeanDefault{
     @EJB
     private MidiaService bean;
     @Getter @Setter

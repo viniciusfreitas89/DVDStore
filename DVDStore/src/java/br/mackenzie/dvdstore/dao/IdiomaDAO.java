@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
  */
 public class IdiomaDAO extends DAO{
     EntityManager em;
-    public IdiomaDAO(Class type, EntityManager em) {
+    private IdiomaDAO(Class type, EntityManager em) {
         super(type, em);
         this.em = em;
     }

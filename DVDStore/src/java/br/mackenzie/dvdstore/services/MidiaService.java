@@ -19,15 +19,29 @@ import javax.persistence.PersistenceContext;
 public class MidiaService {
     @PersistenceContext
     private EntityManager em;
-    private Long idFilme;
-    
+
     public List<MidiaVO> listar(){
        MidiaDAO dao = new MidiaDAO(em);
        return dao.findAll();
     }
     
+    public List<MidiaVO> listar(int numeroResultados){
+       MidiaDAO dao = new MidiaDAO(em);
+       return dao.findAll(numeroResultados, 0);
+    }
+    
+    public List<MidiaVO> filtrarPorTitulo(String titulo){
+       MidiaDAO dao = new MidiaDAO(em);
+       return dao.filtrarPorTitulo(null);
+    }
+    
     public MidiaVO procurar(Long id){
         MidiaDAO dao = new MidiaDAO(em);
         return (MidiaVO) dao.find(id);
+    }
+    
+    public void inserir(MidiaVO obj){
+        MidiaDAO dao = new MidiaDAO(em);
+        dao.create(obj);
     }
 }

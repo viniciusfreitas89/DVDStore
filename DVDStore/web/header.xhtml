@@ -1,16 +1,30 @@
 <header xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html">
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    
     <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
     <h:outputStylesheet name="css/estilos.css" />
     <h:outputScript name="js/jquery-1.9.1.min.js" />
     <h:outputScript name="js/editar.js" />
-    <h:outputScript name="bootstrap/js/bootstrap.min.js" />
+    <h:outputScript name="bootstrap/js/bootstrap.min.js" 
+                    />
         
     <div class="ds-header-01">
         <div class="ds-header-busca input-append row">
             <h:form>
-                <h:inputText class="span6" id="appendedInputButton"></h:inputText> 
-                <h:commandButton value="Buscar" class="span2 btn btn-success"></h:commandButton>
+                <h:inputText class="span6" id="appendedInputButton" pt:placeholder="Procure por filmes aqui."></h:inputText> 
+                <h:selectOneMenu value="#{midiaManagedBean.tipoMidia}" class="btn dropdown-toggle btn-large">
+                    <f:selectItem itemValue="" itemLabel="Ordenar por..." />
+                    <f:selectItems value="#{midiaManagedBean.orderBusca}"
+                                    var="item"
+                                    itemValue="#{item.id}"
+                                    itemLabel="#{item.description}"
+                                    itemLabelEscaped="true"
+                                    noSelectionValue=""/>
+                 </h:selectOneMenu>
+                <!--<h:commandButton value="Buscar" class="span2 btn btn-success" ></h:commandButton>-->
+                <h:commandLink value="Buscar" class="span2 btn btn-success btn-buscar" action="#{midiaManagedBean.filtrarPorTitulo}"></h:commandLink>
             </h:form>
         </div> 
     </div>

@@ -21,8 +21,4 @@ public class PessoaDAO extends DAO{
     public PessoaDAO(EntityManager em) {
         this(PessoaVO.class, em);
     }
-    
-     public void insert(MidiaVO t) {
-        this.create(t);
-    }
 }

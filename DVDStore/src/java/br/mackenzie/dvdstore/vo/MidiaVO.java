@@ -19,7 +19,16 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import br.mackenzie.dvdstore.enumpack.MidiaEnum;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.TableGenerator;
 /**
  *
@@ -27,19 +36,23 @@ import javax.persistence.TableGenerator;
  */
 @Entity
 @Table(name="MIDIAS")
+//@NamedQueries(@NamedQuery="SELECT * FROM ")
 @TableGenerator(name="MIDIAS_TABLE_GENERATOR", 
                 table = "SEQUENCE_GENERATOR", 
                 pkColumnName = "SEQUENCE_NAME",
                 pkColumnValue = "MIDIAS_SEQUENCE",
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
+@NamedQueries({
+    @NamedQuery(name="Midia.filtrar.titulo", query = "SELECT m FROM MidiaVO m WHERE m.titulo LIKE :titulo")
+})
 public class MidiaVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "MIDIAS_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE })
     @JoinColumn(name = "id_genero", referencedColumnName = "id")
     @Getter @Setter
     private GenerosVO genero;
@@ -62,9 +75,24 @@ public class MidiaVO implements Serializable {
     @Enumerated
     @Getter @Setter
     private MidiaEnum tipo;
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @JoinTable(name = "MIDIA_ATORES", 
+               joinColumns = {@JoinColumn(name = "ID_MIDIA")},
+               inverseJoinColumns = {@JoinColumn(name = "ID_ATOR")})
+    @Getter @Setter
+    private List<AtoresTesteVO> atores;
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE })
+    @JoinTable(name = "MIDIA_IDIOMAS", 
+               joinColumns = {@JoinColumn(name = "ID_MIDIA")},
+               inverseJoinColumns = {@JoinColumn(name = "ID_IDIOMA")})
+    @Getter @Setter 
+    private List<IdiomaVO> idiomas;
     
     public MidiaVO(){
         this.tipo = MidiaEnum.DVD;
+        
+        idiomas = new ArrayList<IdiomaVO>();
+        atores = new ArrayList<AtoresTesteVO>();
     }
     public MidiaVO(Long id, String titulo, String descricao, Float valorUnitario){
         this.id = id;
@@ -72,12 +100,18 @@ public class MidiaVO implements Serializable {
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
         this.tipo = MidiaEnum.DVD;
+        
+        idiomas = new ArrayList<IdiomaVO>();
+        atores = new ArrayList<AtoresTesteVO>();
     }
     public MidiaVO(String titulo, String descricao, Float valorUnitario){
         this.titulo = titulo;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
         this.tipo = MidiaEnum.DVD;
+        
+        idiomas = new ArrayList<IdiomaVO>();
+        atores = new ArrayList<AtoresTesteVO>();
     }
     
     @Override
