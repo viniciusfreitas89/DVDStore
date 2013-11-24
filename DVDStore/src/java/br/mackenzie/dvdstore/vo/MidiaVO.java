@@ -44,7 +44,11 @@ import javax.persistence.TableGenerator;
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
 @NamedQueries({
-    @NamedQuery(name="Midia.filtrar.titulo", query = "SELECT m FROM MidiaVO m WHERE m.titulo LIKE :titulo")
+    @NamedQuery(name="Midia.filtrar.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1"),
+    @NamedQuery(name="Midia.filtrar.titulo.ordenado.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.titulo"),
+    @NamedQuery(name="Midia.filtrar.titulo.ordenado.maior-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario desc"),
+    @NamedQuery(name="Midia.filtrar.titulo.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc"),
+    @NamedQuery(name="Midia.filtrar.titulo.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc")
 })
 public class MidiaVO implements Serializable {
     private static final long serialVersionUID = 1L;

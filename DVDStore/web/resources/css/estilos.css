@@ -59,6 +59,35 @@ ul.alert{
     padding: 5px;
     margin-top: 8px;
 }
+.busca .span9{
+    width: 66.468085%;
+}
+.busca .span3{
+    width: 30.404255%;
+}
+.busca .span3 li{
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: -1px;
+    float: none;
+}
+.busca .span3 li:hover{ 
+    background: #ddd;
+}
+.busca .span3 form{
+    margin: 0px;
+}
+.busca .span3 form input[type="submit"]{ 
+    border: 0px;
+    background: none;
+    width: 100%;
+    height: 99%;
+    text-align: left;
+    color: #0088cc;
+}
+
+
+
 /******* CSS CABEÇALHO *******/
 .ds-header-01{
     width: 100%;
@@ -92,11 +121,7 @@ ul.alert{
 }
 .ds-header-busca form .btn-buscar{
     padding: 10px!important;
-    font-size: 15px!important;
-    display: inline-block;
-    float: right;
-    margin-left: 0;
-    
+    margin-left: 5px;
 }
 
 /* MENU HEADER */

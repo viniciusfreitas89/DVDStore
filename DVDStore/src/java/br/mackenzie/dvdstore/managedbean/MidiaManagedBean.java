@@ -11,13 +11,13 @@ import br.mackenzie.dvdstore.services.MidiaService;
 import br.mackenzie.dvdstore.vo.AtoresTesteVO;
 import br.mackenzie.dvdstore.vo.IdiomaVO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
-import br.mackenzie.dvdstore.vo.MidiaVO_;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 /**
@@ -33,7 +33,7 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     @Getter @Setter
     private String termoBusca;
     @Getter @Setter
-    private String order;
+    private Integer order;
     @Getter @Setter
     private MidiaVO vo;
     @Getter @Setter
@@ -70,8 +70,6 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     }
     
     public void incluir(){
-        System.out.println("## Atores: "+atores);
-        System.out.println("## Valor unitario: "+vo.getValorUnitario());
         for (Long item : atores){
             AtoresTesteVO obj = new AtoresTesteVO();
             obj.setId(item);
@@ -95,7 +93,20 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     }
     
     public String filtrarPorTitulo(){
-        filmes = bean.filtrarPorTitulo(termoBusca);
+        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order));
+        return "busca.xhtml";
+    }
+    
+    public String filtrarPorTituloGenero(){
+        termoBusca = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("termoBusca");
+        String ord = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("order");
+        order = Integer.parseInt(ord);
+        System.out.println();
+        System.out.println();
+        System.out.println("##############");
+        System.out.println(termoBusca);
+        System.out.println(order);
+        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order));
         return "busca.xhtml";
     }
 }

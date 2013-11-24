@@ -2,27 +2,39 @@
      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
      xmlns:h="http://xmlns.jcp.org/jsf/html"
      xmlns:f="http://xmlns.jcp.org/jsf/core">
-            
-    <h3>Filmes em destaque</h3>
-
-    <br />
-
-    <div class="ds-produtos-home row">
-        <ui:repeat var="item" value="#{midiaManagedBean.filmes}">
-            <div class="ds-prod" style="width: 150px; float: left; margin: 5px">
-                <h:form>
-                    <h:commandLink id="hLink" action="#{midiaManagedBean.mostrarFilme(item.id)}">
-                        <h:graphicImage name="images/imgNotFound.png" />
-                        <f:param name="idFilme" value="#{item.id}" />
-                    </h:commandLink>
-                    <h5 class="ds-prod-titulo"><h:outputText value="#{item.titulo}" /></h5>                
-                    <span>Gênero <b></b></span>
-                    <span>preço R$ <h:outputText value="#{item.valorUnitario}" /></span>
-                    <br />
-                    <span class="ds-sinopse"><b>sinopse</b> <h:outputText value="#{cli.comentario}" /></span>
-                </h:form>
-            </div> 
-        </ui:repeat>
+   <br/>
+    <div class="ds-produtos-home row busca">
+        <div class="span3">
+            <label class="alert alert-info"><b>Generos:</b></label>
+            <ul class="nav nav-tabs nav-stacked">
+                <ui:repeat value="#{generoManagedBean.generos}" var="item">
+                    <li>
+                        <h:form>
+                            <input type="hidden" name="termoBusca" value="#{midiaManagedBean.termoBusca}"/>
+                            <input type="hidden" name="order"     value="#{midiaManagedBean.order}"/>
+                            <h:commandButton value="#{item.nome}" action="#{midiaManagedBean.filtrarPorTituloGenero}" />
+                        </h:form>
+                    </li>
+                </ui:repeat>
+            </ul>
+        </div>
+        <div class="span9">
+            <ui:repeat var="item" value="#{midiaManagedBean.filmes}">
+                <div class="ds-prod" style="width: 150px; float: left; margin: 5px">
+                    <h:form>
+                        <h:commandLink id="hLink" action="#{midiaManagedBean.mostrarFilme(item.id)}">
+                            <h:graphicImage name="images/imgNotFound.png" />
+                            <f:param name="idFilme" value="#{item.id}" />
+                        </h:commandLink>
+                        <h5 class="ds-prod-titulo"><h:outputText value="#{item.titulo}" /></h5>                
+                        <span>Gênero <b></b></span>
+                        <span>preço R$ <h:outputText value="#{item.valorUnitario}" /></span>
+                        <br />
+                        <span class="ds-sinopse"><b>sinopse</b> <h:outputText value="#{cli.comentario}" /></span>
+                    </h:form>
+                </div> 
+            </ui:repeat>
+        </div> 
     </div>
 
 </div>
