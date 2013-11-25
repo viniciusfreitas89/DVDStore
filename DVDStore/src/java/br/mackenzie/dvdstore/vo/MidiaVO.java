@@ -27,6 +27,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 /**
  *
@@ -99,7 +100,7 @@ public class MidiaVO implements Serializable {
                inverseJoinColumns = {@JoinColumn(name = "ID_IDIOMA")})
     @Getter @Setter 
     private List<IdiomaVO> idiomas;
-    @ManyToOne
+    @OneToMany(mappedBy = "midia")
     @JoinColumn(name = "ID")
     @Getter @Setter
     private List<VendaMidiasVO> midias;

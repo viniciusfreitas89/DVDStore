@@ -39,14 +39,14 @@ public class VendaMidiasVO implements Serializable {
     private float total;
     @Getter @Setter
     private int quantidade;
-    @OneToMany(mappedBy = "midias")
+    @ManyToOne()
     @JoinColumn(name = "ID")
     @Getter @Setter
-    private List<MidiaVO> midias;
-    @OneToMany(mappedBy = "midias")
-    @JoinColumn(name = "ID")
+    private MidiaVO midia;
+    @ManyToOne()
+    //@JoinColumn(name = "ID")
     @Getter @Setter
-    private List<VendasVO> vendas;
+    private VendasVO venda;
     
     @Override
     public int hashCode() {

@@ -46,8 +46,8 @@ public class VendasVO {
     private PessoaVO cliente;
     @Getter @Setter
     private float total;
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @OneToMany(mappedBy = "venda")
+    //@JoinColumn(name = "ID")
     @Getter @Setter
     private List<VendaMidiasVO> midias;
 }
