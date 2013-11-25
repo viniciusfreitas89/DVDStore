@@ -6,10 +6,11 @@ package br.mackenzie.dvdstore.managedbean;
 
 import br.mackenzie.dvdstore.enumpack.MidiaEnum;
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
+import br.mackenzie.dvdstore.services.AtorService;
 import br.mackenzie.dvdstore.services.GeneroService;
+import br.mackenzie.dvdstore.services.IdiomaService;
 import br.mackenzie.dvdstore.services.MidiaService;
-import br.mackenzie.dvdstore.vo.AtoresTesteVO;
-import br.mackenzie.dvdstore.vo.IdiomaVO;
+import br.mackenzie.dvdstore.vo.AtorVO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +31,10 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     private MidiaService bean;
     @EJB
     private GeneroService beanGenero;
+    @EJB
+    private IdiomaService beanIdioma;
+    @EJB
+    private AtorService beanAtor;
     @Getter @Setter
     private String termoBusca;
     @Getter @Setter
@@ -64,21 +69,21 @@ public class MidiaManagedBean extends ManagedBeanDefault{
         return Arrays.asList(OrdemBuscaEnum.values());
     }
     
+     public String mostrarFilme(){
+        return "detalhe.xhtml";
+    }
+    
     public String mostrarFilme(Long idFilme){
         vo = bean.procurar(idFilme);
         return "detalhe.xhtml";
     }
     
     public void incluir(){
-        for (Long item : atores){
-            AtoresTesteVO obj = new AtoresTesteVO();
-            obj.setId(item);
-            vo.getAtores().add(obj);
+        for (Long id : atores){
+            vo.getAtores().add(beanAtor.procurar(id));
         }
-        for (Long item : idiomas){
-            IdiomaVO obj = new IdiomaVO();
-            obj.setId(item);
-            vo.getIdiomas().add(obj);
+        for (Long id : idiomas){
+            vo.getIdiomas().add(beanIdioma.procurar(id));
         }
         if (tipoMidia!=null && !tipoMidia.isEmpty()){
             vo.setTipo(MidiaEnum.valueOf(Integer.parseInt(tipoMidia)));
@@ -101,7 +106,7 @@ public class MidiaManagedBean extends ManagedBeanDefault{
         termoBusca = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("termoBusca");
         String ord = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("order");
         order = Integer.parseInt(ord);
-        filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order), beanGenero.procurar(idGenero));
+            filmes = bean.filtrarPorTitulo(termoBusca, OrdemBuscaEnum.valueOf(order), beanGenero.procurar(idGenero));
         return "busca.xhtml";
-    }
+   }
 }

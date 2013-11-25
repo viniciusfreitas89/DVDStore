@@ -6,13 +6,10 @@
 
 package br.mackenzie.dvdstore.vo;
 
-import java.io.Serializable;
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -33,41 +30,12 @@ import lombok.Setter;
                 pkColumnValue = "ATORES_SEQUENCE",
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
-public class AtoresTesteVO implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ATORES_TABLE_GENERATOR")
-    @Getter @Setter
-    private Long id;
-    @Getter @Setter
-    private String nome;
+@DiscriminatorValue(value = "A")
+public class AtorVO extends PessoaVO{
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="MIDIA_ATORES",
                 joinColumns=@JoinColumn(name="ID_ATOR"),
                 inverseJoinColumns=@JoinColumn(name="ID_MIDIA"))
     @Getter @Setter
     private List<MidiaVO> midias;
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof AtoresTesteVO)) {
-            return false;
-        }
-        AtoresTesteVO other = (AtoresTesteVO) object;
-        if ((this.id == null && other.id!= null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return nome;
-    }
 }

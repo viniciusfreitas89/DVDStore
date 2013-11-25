@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:body>
         <div class="ds-content-centro row-fluid">
             <br />
@@ -18,8 +19,24 @@
                         <div>
                              <b>#{midiaManagedBean.vo.id} - #{midiaManagedBean.vo.titulo}</b>
                         </div>
+                        <br/>
                         <div>
-                            #{midiaManagedBean.vo.descricao}
+                            <label><b>Sinopse:</b> #{midiaManagedBean.vo.descricao}</label>
+                            <br/>
+                            <label><b>Gênero: </b> #{midiaManagedBean.vo.genero.nome}</label>
+                            <label><b>Tipo:</b> #{midiaManagedBean.vo.tipo.description}</label>
+                            <f:verbatim rendered="#{midiaManagedBean.vo.estudio != null} ">  
+                                <label><b>Estúdio:</b> #{midiaManagedBean.vo.estudio}</label>
+                            </f:verbatim>  
+                            <f:verbatim rendered="#{midiaManagedBean.vo.tempo != null }">  
+                                <label><b>Tempo:</b> #{midiaManagedBean.vo.tempo}</label>
+                            </f:verbatim>     
+                            
+                            <label><b>Idiomas: </b> 
+                                <ui:repeat value="#{midiaManagedBean.vo.idiomas}" var="item">
+                                    #{item.nome},
+                                </ui:repeat>
+                            </label>
                         </div>
                         <br/>
                         <div >

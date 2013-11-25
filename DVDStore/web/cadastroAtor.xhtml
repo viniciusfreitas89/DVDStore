@@ -6,6 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>.: DVD Store - ADM CADASTRO ATOR :.</title>
+        
     </h:head>
     <h:body>
         
@@ -19,10 +20,10 @@
                 
                 <h:form enctype="multipart/form-data">
                 <div class="row">                    
-                        <h:outputLabel value="Nome do ator" />
-                        <h:inputText value="" />
+                        <h:outputLabel value="Ator" />
+                        <h:inputText value="#{atorManagedBean.ator.nome}" />
                         <br />
-                        <h:commandButton value="Incluir novo ator" class="btn btn-success" />                     
+                        <h:commandButton value="Incluir novo gênero" class="btn btn-success" action="#{atorManagedBean.incluir}"/>                     
                 </div>
                 </h:form>
                 
@@ -32,34 +33,38 @@
                 </div>
                 
                 <div class="row">
-                <h:dataTable class="table table-striped table-bordered table-hover table-condensed" value="#{midiaManagedBean.listarFilmes}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Gênero" class="help-block" />
-                        </f:facet>
-                        <h:outputText value="#{item.titulo}" />
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Alteração" class="help-block" />
-                        </f:facet>
-                        
-                        <div class="btn-toolbar">
-                            <h:form>
-                                <div class="btn-group">                                    
-                                    <h:commandButton value="Editar" class="btn btn-success" />                                    
-                                    <h:commandButton value="Ecluir" class="btn btn-danger" />                                    
+                    <h:form id="form">
+                        <h:dataTable class="table table-striped table-bordered table-hover table-condensed table-items" value="#{atorManagedBean.atores}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Gênero" class="help-block" />
+                                </f:facet>
+                                <input type="text" name="nome#{item.id}" class="no-border no-background default-cursor txt-nome" readonly="true"  value="#{item.nome}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Alteração" class="help-block" />
+                                </f:facet>
+
+                                <div class="btn-toolbar">
+                                    <div class="btn-group">   
+                                        
+                                            <input type="button" value="Editar" class="btn btn-success btnEditar" />
+                                            <h:commandButton value="Salvar" class="btn btn-info hidden btnSalvar" action="#{atorManagedBean.atualizar(item.id)}"/>
+                                            <input type="button" value="Cancelar" class="btn hidden btnCancelar" />
+                                            <h:commandButton value="Excluir" class="btn btn-danger btnExcluir" action="#{atorManagedBean.excluir(item.id)}"/>                                    
+                                        
+                                    </div>
                                 </div>
-                            </h:form>
-                        </div>
-                    </h:column>
-                
-                </h:dataTable>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:form>
                 </div>						
             
             </ui:define>           
         </ui:composition>
-            
+        
     </h:body>
 </html>

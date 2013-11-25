@@ -5,6 +5,17 @@
         <param-value>Development</param-value>
     </context-param>
     <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>br.mackenzie.dvdstore.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/faces/cadastroGenero.xhtml</url-pattern>
+        <url-pattern>/faces/cadastroIdioma.xhtml</url-pattern>
+        <url-pattern>/faces/cadastroAtor.xhtml</url-pattern>
+        <url-pattern>/faces/cadastroProduto.xhtml</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>GerarDadosFilter</filter-name>
         <filter-class>br.mackenzie.dvdstore.filters.GerarDadosFilter</filter-class>
     </filter>
@@ -12,6 +23,7 @@
         <filter-name>GerarDadosFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

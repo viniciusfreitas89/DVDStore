@@ -40,7 +40,7 @@ public class IdiomaVO implements Serializable {
     private Long id;
     @Getter @Setter
     private String nome;
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="MIDIA_IDIOMAS",
                 joinColumns=@JoinColumn(name="ID_IDIOMA"),
                 inverseJoinColumns=@JoinColumn(name="ID_MIDIA"))

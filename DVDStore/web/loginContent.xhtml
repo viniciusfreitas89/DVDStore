@@ -14,11 +14,11 @@
                     <h5>Já tenho cadastro</h5>
                     <h:form>
                         <h:outputLabel value="Infome seu e-mail" />
-                        <h:inputText />
+                        <h:inputText value="#{loginManagedBean.username}"/>
                         <h:outputLabel value="Infome sua senha" />
-                        <h:inputSecret />
+                        <h:inputSecret value="#{loginManagedBean.password}"/>
                         <br/>
-                        <h:commandButton class="btn btn-success" value="Continuar &rarr;"/>
+                        <h:commandButton class="btn btn-success" value="Continuar &rarr;" action="#{loginManagedBean.doLogin}"/>
                     </h:form>
                     
                 </div>

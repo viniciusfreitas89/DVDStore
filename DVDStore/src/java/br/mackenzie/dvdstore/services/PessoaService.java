@@ -5,7 +5,6 @@
 package br.mackenzie.dvdstore.services;
 
 import br.mackenzie.dvdstore.dao.PessoaDAO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
 import br.mackenzie.dvdstore.vo.PessoaVO;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -21,7 +20,7 @@ public class PessoaService {
     @PersistenceContext
     private EntityManager em;
     
-    public List<MidiaVO> listar(){
+    public List<PessoaVO> listar(){
        PessoaDAO dao = new PessoaDAO(em);
        return dao.findAll();
     }

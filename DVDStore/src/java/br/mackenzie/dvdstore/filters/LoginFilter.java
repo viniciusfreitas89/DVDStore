@@ -1,10 +1,8 @@
 package br.mackenzie.dvdstore.filters;
 
-import br.mackenzie.dvdstore.dao.MidiaDAO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
+import br.mackenzie.dvdstore.managedbean.LoginManagedBean;
+import br.mackenzie.dvdstore.vo.PessoaVO;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.Filter;
@@ -13,6 +11,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 /**
@@ -30,20 +30,23 @@ public class LoginFilter implements Filter {
         this.filterConfig = filterConfig;
         
         System.out.println("EM: "+em);
-        System.out.println("GerarDadosFilter Inicializado");
+        System.out.println("LoginFilter Inicializado");
     }
     
     @Transactional
-    public void doFilter(ServletRequest request, ServletResponse response,
+    public void doFilter(ServletRequest req, ServletResponse res,
             FilterChain chain)
             throws IOException, ServletException {
         
-        inserirMidias();
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
         
-        chain.doFilter(request, response);
-    }
-
-    private void inserirMidias(){
+        LoginManagedBean vo = (LoginManagedBean) request.getSession().getAttribute("loginManagedBean");
+        if (vo == null){
+            response.sendRedirect("login.xhtml");
+        }else{
+            chain.doFilter(request, response);
+        }
     }
 
     @Override

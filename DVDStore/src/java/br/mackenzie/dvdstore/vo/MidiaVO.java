@@ -68,6 +68,10 @@ public class MidiaVO implements Serializable {
     private String titulo;
     @Getter @Setter
     private String descricao;
+    @Getter @Setter
+    private String estudio;
+    @Getter @Setter
+    private String tempo;
     @Column(name="valor_unitario")
     @Getter @Setter
     private Float valorUnitario;
@@ -88,7 +92,7 @@ public class MidiaVO implements Serializable {
                joinColumns = {@JoinColumn(name = "ID_MIDIA")},
                inverseJoinColumns = {@JoinColumn(name = "ID_ATOR")})
     @Getter @Setter
-    private List<AtoresTesteVO> atores;
+    private List<AtorVO> atores;
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE })
     @JoinTable(name = "MIDIA_IDIOMAS", 
                joinColumns = {@JoinColumn(name = "ID_MIDIA")},
@@ -96,11 +100,12 @@ public class MidiaVO implements Serializable {
     @Getter @Setter 
     private List<IdiomaVO> idiomas;
     
+    
     public MidiaVO(){
         this.tipo = MidiaEnum.DVD;
         
         idiomas = new ArrayList<IdiomaVO>();
-        atores = new ArrayList<AtoresTesteVO>();
+        atores = new ArrayList<AtorVO>();
     }
     public MidiaVO(Long id, String titulo, String descricao, Float valorUnitario){
         this.id = id;
@@ -110,17 +115,17 @@ public class MidiaVO implements Serializable {
         this.tipo = MidiaEnum.DVD;
         
         idiomas = new ArrayList<IdiomaVO>();
-        atores = new ArrayList<AtoresTesteVO>();
+        atores = new ArrayList<AtorVO>();
     }
-    public MidiaVO(String titulo, String descricao, Float valorUnitario, GenerosVO genero){
+    public MidiaVO(String titulo, String descricao, Float valorUnitario, GenerosVO genero, List<IdiomaVO> idiomas){
         this.titulo = titulo;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
         this.tipo = MidiaEnum.DVD;
         this.genero = genero;
+        this.idiomas = idiomas;
         
-        idiomas = new ArrayList<IdiomaVO>();
-        atores = new ArrayList<AtoresTesteVO>();
+        atores = new ArrayList<AtorVO>();
     }
     
     @Override

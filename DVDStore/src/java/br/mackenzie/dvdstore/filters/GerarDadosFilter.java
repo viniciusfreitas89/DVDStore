@@ -1,10 +1,16 @@
 package br.mackenzie.dvdstore.filters;
 
+import br.mackenzie.dvdstore.dao.AtorDAO;
 import br.mackenzie.dvdstore.dao.GenerosDAO;
+import br.mackenzie.dvdstore.dao.IdiomaDAO;
 import br.mackenzie.dvdstore.dao.MidiaDAO;
+import br.mackenzie.dvdstore.dao.PessoaDAO;
+import br.mackenzie.dvdstore.vo.AtorVO;
 import br.mackenzie.dvdstore.vo.GenerosVO;
+import br.mackenzie.dvdstore.vo.IdiomaVO;
 import br.mackenzie.dvdstore.vo.MidiaVO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -57,24 +63,43 @@ public class GerarDadosFilter implements Filter {
         if (list2.isEmpty()){
             Random randomGenerator = new Random();
             List<MidiaVO> list = Arrays.asList(
-                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size()))),
-                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())))
+                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas())
                             );
             
             for (MidiaVO vo : list){
                 dao.create(vo);
             }
         }
+    }
+    
+    @Transactional
+    private List<IdiomaVO> gerarIdiomas(){
+        IdiomaDAO iDao = new IdiomaDAO(em);
+        List<IdiomaVO> idiomas = iDao.findAll(10, 0);
+        Random randomGenerator = new Random();
+        
+        List<IdiomaVO> idiomasMidias = new ArrayList<IdiomaVO>();
+        int size = randomGenerator.nextInt(idiomas.size());
+        if (size == 0){size++;}
+        
+        for (int i = 0; i < size; i++){
+            IdiomaVO vo = idiomas.get(randomGenerator.nextInt(idiomas.size()));
+            if (!idiomasMidias.contains(vo)){
+                idiomasMidias.add(vo);
+            }
+        }
+        return idiomasMidias;
     }
 
     @Override

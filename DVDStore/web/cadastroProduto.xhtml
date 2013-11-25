@@ -23,6 +23,12 @@
                     <div class="span6" style="position: relative">
                         <h:outputLabel value="Titulo do filme" />
                         <h:inputText  pt:placeholder="Informe o nome do filme" value="#{midiaManagedBean.vo.titulo}" />
+                        
+                        <h:outputLabel value="Estúdio" />
+                        <h:inputText  pt:placeholder="Informe o estúdio" value="#{midiaManagedBean.vo.estudio}" />
+                        
+                        <h:outputLabel value="Tempo" />
+                        <h:inputText  pt:placeholder="Informe o tempo" value="#{midiaManagedBean.vo.tempo}" />
 
                         <h:outputLabel value="Genêro" />
                         <h:selectOneMenu value="#{midiaManagedBean.idGenero}" >
@@ -66,9 +72,12 @@
 
                         <h:outputLabel value="Atores" />
                         <h:selectManyListbox size="6" value="#{midiaManagedBean.atores}" converter="javax.faces.Long">
-                            <f:selectItem itemValue="1" itemLabel="Tom" />
-                            <f:selectItem itemValue="2" itemLabel="Angelina" />
-                            <f:selectItem itemValue="3" itemLabel="Mary" />
+                            <f:selectItems value="#{atorManagedBean.atores}"
+                                            var="item"
+                                            itemValue="#{item.id}"
+                                            itemLabel="#{item.nome}"
+                                            itemLabelEscaped="true"
+                                            noSelectionValue=""/>
                         </h:selectManyListbox>
                      </div>
                 </div>

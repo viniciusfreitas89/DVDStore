@@ -6,10 +6,15 @@ package br.mackenzie.dvdstore.vo;
 
 import br.mackenzie.dvdstore.enumpack.TipoPessoaEnum;
 import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import lombok.Getter;
@@ -27,6 +32,11 @@ import lombok.Setter;
                 pkColumnValue = "PESSOAS_SEQUENCE",
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO_PESSOA",
+                     discriminatorType = DiscriminatorType.STRING,
+                     length = 1)
+@DiscriminatorValue(value = "P")
 public class PessoaVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,8 +61,6 @@ public class PessoaVO implements Serializable {
     private String cep;
     @Getter @Setter
     private String telefone;
-    @Getter @Setter
-    private TipoPessoaEnum tipo;
     @Getter @Setter
     private String cidade;
     @Getter @Setter
