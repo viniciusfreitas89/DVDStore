@@ -99,6 +99,10 @@ public class MidiaVO implements Serializable {
                inverseJoinColumns = {@JoinColumn(name = "ID_IDIOMA")})
     @Getter @Setter 
     private List<IdiomaVO> idiomas;
+    @ManyToOne
+    @JoinColumn(name = "ID")
+    @Getter @Setter
+    private List<VendaMidiasVO> midias;
     
     
     public MidiaVO(){
