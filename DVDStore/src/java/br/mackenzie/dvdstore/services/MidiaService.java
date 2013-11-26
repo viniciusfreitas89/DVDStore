@@ -6,8 +6,8 @@ package br.mackenzie.dvdstore.services;
 
 import br.mackenzie.dvdstore.dao.MidiaDAO;
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
-import br.mackenzie.dvdstore.vo.GenerosVO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
+import br.mackenzie.dvdstore.entity.GenerosVO;
+import br.mackenzie.dvdstore.entity.MidiaVO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -45,5 +45,9 @@ public class MidiaService {
     public void inserir(MidiaVO obj){
         MidiaDAO dao = new MidiaDAO(em);
         dao.create(obj);
+    }
+    
+    public byte[] loadImage(Long id){
+        return em.find(MidiaVO.class, id).getArquivo();
     }
 }

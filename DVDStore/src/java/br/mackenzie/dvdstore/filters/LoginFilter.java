@@ -1,8 +1,9 @@
 package br.mackenzie.dvdstore.filters;
 
 import br.mackenzie.dvdstore.managedbean.LoginManagedBean;
-import br.mackenzie.dvdstore.vo.PessoaVO;
+import br.mackenzie.dvdstore.services.PessoaService;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.Filter;
@@ -14,7 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
-
+ 
 /**
  *
  * @author Vinicius
@@ -22,13 +23,11 @@ import javax.transaction.Transactional;
 public class LoginFilter implements Filter {
     @PersistenceContext()
     private EntityManager em;
-    
-    private FilterConfig filterConfig = null;
+    @EJB
+    private PessoaService bean;
     
     @Override
     public void init(FilterConfig filterConfig) {        
-        this.filterConfig = filterConfig;
-        
         System.out.println("EM: "+em);
         System.out.println("LoginFilter Inicializado");
     }
@@ -42,7 +41,10 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         
         LoginManagedBean vo = (LoginManagedBean) request.getSession().getAttribute("loginManagedBean");
-        if (vo == null){
+        if (vo == null || 
+            vo.getPessoa()==null || 
+            vo.getPessoa().getId() == null || 
+            bean.procurar(vo.getPessoa().getId()) == null ){
             response.sendRedirect("login.xhtml");
         }else{
             chain.doFilter(request, response);

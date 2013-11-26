@@ -4,7 +4,7 @@
  */
 package br.mackenzie.dvdstore.dao;
 
-import br.mackenzie.dvdstore.vo.AtorVO;
+import br.mackenzie.dvdstore.entity.AtorVO;
 import javax.persistence.EntityManager;
 
 /**

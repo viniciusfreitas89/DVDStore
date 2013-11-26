@@ -5,8 +5,8 @@
 package br.mackenzie.dvdstore.dao;
 
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
-import br.mackenzie.dvdstore.vo.GenerosVO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
+import br.mackenzie.dvdstore.entity.GenerosVO;
+import br.mackenzie.dvdstore.entity.MidiaVO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

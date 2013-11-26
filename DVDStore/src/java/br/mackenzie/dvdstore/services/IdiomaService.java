@@ -8,7 +8,7 @@ package br.mackenzie.dvdstore.services;
 
 import br.mackenzie.dvdstore.dao.IdiomaDAO;
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
-import br.mackenzie.dvdstore.vo.IdiomaVO;
+import br.mackenzie.dvdstore.entity.IdiomaVO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

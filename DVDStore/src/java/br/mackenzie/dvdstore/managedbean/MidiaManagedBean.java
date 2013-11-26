@@ -4,21 +4,25 @@
  */
 package br.mackenzie.dvdstore.managedbean;
 
+import static com.google.common.io.ByteStreams.toByteArray;
 import br.mackenzie.dvdstore.enumpack.MidiaEnum;
 import br.mackenzie.dvdstore.enumpack.OrdemBuscaEnum;
 import br.mackenzie.dvdstore.services.AtorService;
 import br.mackenzie.dvdstore.services.GeneroService;
 import br.mackenzie.dvdstore.services.IdiomaService;
 import br.mackenzie.dvdstore.services.MidiaService;
-import br.mackenzie.dvdstore.vo.AtorVO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
+import br.mackenzie.dvdstore.entity.MidiaVO;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
 import lombok.Getter;
 import lombok.Setter;
 /**
@@ -51,6 +55,8 @@ public class MidiaManagedBean extends ManagedBeanDefault{
     private List<Long> idiomas;
     @Getter @Setter
     private List<MidiaVO> filmes;
+    @Getter @Setter
+    private Part midiaFile;
     
     public MidiaManagedBean() {
         vo = new MidiaVO();
@@ -90,6 +96,13 @@ public class MidiaManagedBean extends ManagedBeanDefault{
         }
         if (idGenero!=null && !idGenero.isEmpty()){
            vo.setGenero(beanGenero.procurar(Long.parseLong(idGenero)));
+        }
+        try {
+            if (midiaFile!=null){
+                vo.setArquivo(toByteArray(midiaFile.getInputStream()));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MidiaManagedBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         bean.inserir(vo);

@@ -6,7 +6,7 @@ package br.mackenzie.dvdstore.managedbean;
 
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
 import br.mackenzie.dvdstore.services.GeneroService;
-import br.mackenzie.dvdstore.vo.GenerosVO;
+import br.mackenzie.dvdstore.entity.GenerosVO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

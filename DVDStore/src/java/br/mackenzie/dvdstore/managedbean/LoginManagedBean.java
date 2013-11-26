@@ -1,7 +1,8 @@
 package br.mackenzie.dvdstore.managedbean;
 
 import br.mackenzie.dvdstore.services.PessoaService;
-import br.mackenzie.dvdstore.vo.PessoaVO;
+import br.mackenzie.dvdstore.entity.PessoaVO;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,8 +29,12 @@ public class LoginManagedBean extends ManagedBeanDefault{
     
     @Transactional
     public String doLogin(){
-//        bean.inserir(pessoa);
-//        addSucessMessage("Cadastro realizado com sucesso.");
-        return "index.xhtml";
+        List<PessoaVO> list = bean.consultarLogin(username, password);
+        if (list==null || list.isEmpty()){
+           addSucessMessage("Login ou senha incorreto(s).");
+           return "";
+        }
+        pessoa = list.get(0);
+        return "cadastroGenero.xhtml";
     }
 }

@@ -8,7 +8,7 @@ package br.mackenzie.dvdstore.managedbean;
 
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
 import br.mackenzie.dvdstore.services.IdiomaService;
-import br.mackenzie.dvdstore.vo.IdiomaVO;
+import br.mackenzie.dvdstore.entity.IdiomaVO;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

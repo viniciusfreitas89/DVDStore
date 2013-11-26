@@ -293,6 +293,11 @@ ul.alert{
     
 }
 
+.ds-prod img{
+    width: 150px;
+    height: 150px;
+}
+
 /******* CSS RODAPÉ *******/
 .ds-footer{
     width: 100%;

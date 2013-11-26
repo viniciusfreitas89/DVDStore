@@ -4,20 +4,20 @@
  */
 package br.mackenzie.dvdstore.dao;
 
-import br.mackenzie.dvdstore.entity.GenerosVO;
+import br.mackenzie.dvdstore.entity.VendasVO;
 import javax.persistence.EntityManager;
 
 /**
  *
  * @author 71306552
  */
-public class GenerosDAO extends DAO{
+public class VendasDAO extends DAO{
     EntityManager em;
-    private GenerosDAO(Class type, EntityManager em) {
+    private VendasDAO(Class type, EntityManager em) {
         super(type, em);
         this.em = em;
     }
-    public GenerosDAO(EntityManager em) {
-        this(GenerosVO.class, em);
+    public VendasDAO(EntityManager em) {
+        this(VendasVO.class, em);
     }
 }

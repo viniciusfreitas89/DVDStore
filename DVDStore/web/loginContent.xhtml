@@ -9,9 +9,11 @@
         <div class="ds-content-centro row-fluid">
             <h4>Login</h4>
             <br />
+            <h:messages globalOnly="true" class="alert alert-danger"/>
             <div class="ds-login row">
                 <div class="ds-coluna1 span6">
                     <h5>Já tenho cadastro</h5>
+                    
                     <h:form>
                         <h:outputLabel value="Infome seu e-mail" />
                         <h:inputText value="#{loginManagedBean.username}"/>
@@ -20,7 +22,6 @@
                         <br/>
                         <h:commandButton class="btn btn-success" value="Continuar &rarr;" action="#{loginManagedBean.doLogin}"/>
                     </h:form>
-                    
                 </div>
                 <div class="ds-coluna2 span6">
                     <h5>Fazer meu cadastro</h5>

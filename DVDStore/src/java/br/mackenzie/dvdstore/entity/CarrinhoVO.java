@@ -1,4 +1,4 @@
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
 import lombok.Getter;
 import lombok.Setter;

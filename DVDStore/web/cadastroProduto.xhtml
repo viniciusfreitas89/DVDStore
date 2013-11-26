@@ -88,7 +88,7 @@
                     <h:inputTextarea pt:placeholder="Descrição..." class="span12" style="min-height: 150px"  value="#{midiaManagedBean.vo.descricao}" />
                     
                     <h:outputLabel value="Imagem da capa" />
-                    <h:inputFile />
+                    <h:inputFile value="#{midiaManagedBean.midiaFile}" title="arquivo" pt:required="true" />
                     
                     <br /><br />
                     <h:commandButton value="Incluir novo prouto" class="btn btn-success" action="#{midiaManagedBean.incluir}"/>

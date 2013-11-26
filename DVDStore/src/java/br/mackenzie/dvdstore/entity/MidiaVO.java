@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -47,13 +47,11 @@ import javax.persistence.TableGenerator;
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.titulo"),
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.maior-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario desc"),
     @NamedQuery(name="Midia.filtrar.titulo.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc"),
-    @NamedQuery(name="Midia.filtrar.titulo.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 ORDER BY m.valorUnitario asc"),
     
     @NamedQuery(name="Midia.filtrar.titulo-genero", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2"),
     @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.titulo", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.titulo"),
     @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.maior-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario desc"),
-    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario asc"),
-    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.mais-vendido", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario asc")
+    @NamedQuery(name="Midia.filtrar.titulo-genero.ordenado.menor-preco", query = "SELECT m FROM MidiaVO m WHERE LOWER(m.titulo) LIKE :param1 AND m.genero = :param2 ORDER BY m.valorUnitario asc")
 })
 public class MidiaVO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -84,7 +82,7 @@ public class MidiaVO implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     @Lob()
     @Getter @Setter
-    private Byte[] arquivo;
+    private byte[] arquivo;
     @Enumerated
     @Getter @Setter
     private MidiaEnum tipo;
@@ -101,7 +99,6 @@ public class MidiaVO implements Serializable {
     @Getter @Setter 
     private List<IdiomaVO> idiomas;
     @OneToMany(mappedBy = "midia")
-    @JoinColumn(name = "ID")
     @Getter @Setter
     private List<VendaMidiasVO> midias;
     
@@ -129,6 +126,17 @@ public class MidiaVO implements Serializable {
         this.tipo = MidiaEnum.DVD;
         this.genero = genero;
         this.idiomas = idiomas;
+        
+        atores = new ArrayList<AtorVO>();
+    }
+    public MidiaVO(String titulo, String descricao, Float valorUnitario, GenerosVO genero, List<IdiomaVO> idiomas, byte[] arquivo){
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.valorUnitario = valorUnitario;
+        this.tipo = MidiaEnum.DVD;
+        this.genero = genero;
+        this.idiomas = idiomas;
+        this.arquivo = arquivo;
         
         atores = new ArrayList<AtorVO>();
     }

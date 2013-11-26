@@ -4,18 +4,17 @@
  * and open the template in the editor.
  */
 
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
-import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import lombok.Getter;
@@ -26,27 +25,27 @@ import lombok.Setter;
  * @author Vinicius
  */
 @Entity
-@Table(name="IDIOMAS")
-@TableGenerator(name="IDIOMAS_TABLE_GENERATOR", 
+@Table(name="VENDAS")
+@TableGenerator(name="VENDAS_TABLE_GENERATOR", 
                 table = "SEQUENCE_GENERATOR", 
                 pkColumnName = "SEQUENCE_NAME",
-                pkColumnValue = "IDIOMAS_SEQUENCE",
+                pkColumnValue = "VENDAS_SEQUENCE",
                 valueColumnName = "SEQUENCE_VALUE",
                 allocationSize = 1)
-public class IdiomaVO implements Serializable {
+public class VendasVO {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "IDIOMAS_TABLE_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "VENDAS_TABLE_GENERATOR")
     @Getter @Setter
     private Long id;
+    @ManyToOne(fetch = FetchType.EAGER)
     @Getter @Setter
-    private String nome;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="MIDIA_IDIOMAS",
-                joinColumns=@JoinColumn(name="ID_IDIOMA"),
-                inverseJoinColumns=@JoinColumn(name="ID_MIDIA"))
+    private PessoaVO cliente;
     @Getter @Setter
-    private List<MidiaVO> midias;
-    
+    private float total;
+    @OneToMany(mappedBy = "venda", cascade = {CascadeType.PERSIST,CascadeType.MERGE })
+    @Getter @Setter
+    private List<VendaMidiasVO> vendaMidias;
+   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -56,18 +55,13 @@ public class IdiomaVO implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof IdiomaVO)) {
+        if (!(object instanceof VendasVO)) {
             return false;
         }
-        IdiomaVO other = (IdiomaVO) object;
-        if ((this.id == null && other.id!= null) || (this.id != null && !this.id.equals(other.id))) {
+        VendasVO other = (VendasVO) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return nome;
     }
 }

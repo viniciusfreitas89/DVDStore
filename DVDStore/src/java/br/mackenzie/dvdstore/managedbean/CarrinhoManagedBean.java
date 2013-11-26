@@ -5,8 +5,12 @@
 package br.mackenzie.dvdstore.managedbean;
 
 import br.mackenzie.dvdstore.services.MidiaService;
-import br.mackenzie.dvdstore.vo.CarrinhoVO;
-import br.mackenzie.dvdstore.vo.MidiaVO;
+import br.mackenzie.dvdstore.services.VendaService;
+import br.mackenzie.dvdstore.entity.CarrinhoVO;
+import br.mackenzie.dvdstore.entity.MidiaVO;
+import br.mackenzie.dvdstore.entity.PessoaVO;
+import br.mackenzie.dvdstore.entity.VendaMidiasVO;
+import br.mackenzie.dvdstore.entity.VendasVO;
 import com.sun.xml.ws.api.tx.at.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +32,16 @@ public class CarrinhoManagedBean extends ManagedBeanDefault{
     private MidiaService bean;
     @Getter @Setter
     private List<CarrinhoVO> itens;
+    @EJB
+    private VendaService beanVenda;
+    @Getter @Setter
+    private VendasVO venda;
     @Getter @Setter
     private Long idFilme;
     
     public CarrinhoManagedBean() {
         itens = new ArrayList<CarrinhoVO>();
+        
     }
     
     @Transactional
@@ -79,5 +88,32 @@ public class CarrinhoManagedBean extends ManagedBeanDefault{
             item.setQuantidade(itens.get(index).getQuantidade()+1);
             item.setTotal(item.getValorUnitario()*item.getQuantidade());
         }
+    }
+    
+    public String finalizarVenda(){
+        venda = new VendasVO();
+        LoginManagedBean login = getBean("loginManagedBean", LoginManagedBean.class);
+        PessoaVO pessoa = login.getPessoa();
+        
+        if (pessoa!=null){
+            venda.setCliente(pessoa);
+            beanVenda.inserir(venda);
+            float total = 0;
+            for (CarrinhoVO item : itens){
+                VendaMidiasVO vo = new VendaMidiasVO();
+                vo.setIdMidia(item.getId());
+                vo.setIdVenda(venda.getId());
+                vo.setQuantidade(item.getQuantidade());
+                vo.setTotal(item.getTotal());
+                venda.getVendaMidias().add(vo);
+                total += item.getTotal();
+            }
+            venda.setTotal(total);
+            beanVenda.atualizar(venda);
+        }else{
+            return "login.xhtml";
+        }
+        
+        return "finalizacaoCompra.xhtml";
     }
 }

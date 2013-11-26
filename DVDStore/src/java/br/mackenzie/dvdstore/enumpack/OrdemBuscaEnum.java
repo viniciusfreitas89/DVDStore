@@ -8,8 +8,7 @@ public enum OrdemBuscaEnum {
     NONE(0, "Ordenar por...", ""),
     MENOR_PRECO(1, "Menor Preço", "valorUnitario asc"),
     MAIOR_PRECO(2, "Maior Preço", "valorUnitario desc"),
-    TITULO(3, "Titulo", "titulo asc"),
-    MAIS_VENDIDOS(4, "Mais Vendidos", "");
+    TITULO(3, "Titulo", "titulo asc");
     
     private Integer id;
     private String description;

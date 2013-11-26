@@ -4,20 +4,16 @@
  * and open the template in the editor.
  */
 
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +23,7 @@ import lombok.Setter;
  */
 @Entity
 @Table(name="VENDA_MIDIAS")
-@IdClass(Venda_Midias_PK.class)
+@IdClass(VendaMidiasPK.class)
 public class VendaMidiasVO implements Serializable {
     @Id
     @Getter @Setter
@@ -39,12 +35,10 @@ public class VendaMidiasVO implements Serializable {
     private float total;
     @Getter @Setter
     private int quantidade;
-    @ManyToOne()
-    @JoinColumn(name = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     @Getter @Setter
     private MidiaVO midia;
-    @ManyToOne()
-    //@JoinColumn(name = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     @Getter @Setter
     private VendasVO venda;
     

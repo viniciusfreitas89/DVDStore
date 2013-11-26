@@ -6,7 +6,7 @@
 
 package br.mackenzie.dvdstore.dao;
 
-import br.mackenzie.dvdstore.vo.IdiomaVO;
+import br.mackenzie.dvdstore.entity.IdiomaVO;
 import javax.persistence.EntityManager;
 
 /**

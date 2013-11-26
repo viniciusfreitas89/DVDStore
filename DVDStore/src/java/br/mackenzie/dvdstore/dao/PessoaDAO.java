@@ -4,8 +4,10 @@
  */
 package br.mackenzie.dvdstore.dao;
 
-import br.mackenzie.dvdstore.vo.PessoaVO;
+import br.mackenzie.dvdstore.entity.PessoaVO;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -19,5 +21,21 @@ public class PessoaDAO extends DAO{
     }
     public PessoaDAO(EntityManager em) {
         this(PessoaVO.class, em);
+    }
+    
+    public List<PessoaVO> consultarLogin(String email, String senha){
+        Query q = em.createNamedQuery("Pessoa.filtrar.login.senha");
+        q.setParameter("param1", email);
+        q.setParameter("param2", senha);
+        
+        List<PessoaVO> list = q.getResultList();
+        return list;
+    }
+    
+    public List<PessoaVO> consultarLogin(String email){
+        Query q = em.createNamedQuery("Pessoa.filtrar.login");
+        q.setParameter("param1", email);
+        List<PessoaVO> list = q.getResultList();
+        return list;
     }
 }

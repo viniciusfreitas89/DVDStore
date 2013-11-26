@@ -4,27 +4,18 @@
  * and open the template in the editor.
  */
 
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
-import java.util.List;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
-
 
 /**
  *
  * @author Vinicius
  */
 @Entity
-public class Venda_Midias_PK extends PessoaVO{
+public class VendaMidiasPK extends PessoaVO{
     @Getter @Setter
     private Long idVenda;
     @Getter @Setter
@@ -40,15 +31,14 @@ public class Venda_Midias_PK extends PessoaVO{
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Venda_Midias_PK)) {
+        if (!(object instanceof VendaMidiasPK)) {
             return false;
         }
-        Venda_Midias_PK other = (Venda_Midias_PK) object;
+        VendaMidiasPK other = (VendaMidiasPK) object;
         if ((this.idVenda == null && other.idVenda!= null) || (this.idVenda != null && !this.idVenda.equals(other.idVenda)) &&
             (this.idMidia == null && other.idMidia!= null) || (this.idMidia != null && !this.idMidia.equals(other.idMidia))) {
             return false;
         }
         return true;
     }
-
 }

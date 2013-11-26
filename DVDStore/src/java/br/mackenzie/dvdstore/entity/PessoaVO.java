@@ -2,19 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.mackenzie.dvdstore.vo;
+package br.mackenzie.dvdstore.entity;
 
-import br.mackenzie.dvdstore.enumpack.TipoPessoaEnum;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import lombok.Getter;
@@ -37,6 +41,10 @@ import lombok.Setter;
                      discriminatorType = DiscriminatorType.STRING,
                      length = 1)
 @DiscriminatorValue(value = "P")
+@NamedQueries({
+    @NamedQuery(name="Pessoa.filtrar.login.senha", query = "SELECT p FROM PessoaVO p WHERE LOWER(p.email) = :param1 AND p.senha = :param2"),
+    @NamedQuery(name="Pessoa.filtrar.login", query = "SELECT p FROM PessoaVO p WHERE LOWER(p.email) = :param1")
+})
 public class PessoaVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,7 +73,10 @@ public class PessoaVO implements Serializable {
     private String cidade;
     @Getter @Setter
     private String uf;
-    
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @Getter @Setter
+    private List<VendasVO> vendas;
+   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -73,9 +84,9 @@ public class PessoaVO implements Serializable {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof PessoaVO)) {
             return false;
         }
@@ -88,7 +99,7 @@ public class PessoaVO implements Serializable {
 
     @Override
     public String toString() {
-        return "br.mackenzie.dvdstore.vo.PessoaVO[ id=" + id + " ]";
+        return id+": "+nome;
     }
     
 }

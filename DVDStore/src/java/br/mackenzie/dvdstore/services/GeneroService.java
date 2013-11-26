@@ -6,7 +6,7 @@ package br.mackenzie.dvdstore.services;
 
 import br.mackenzie.dvdstore.dao.GenerosDAO;
 import br.mackenzie.dvdstore.dao.exceptions.NonexistentEntityException;
-import br.mackenzie.dvdstore.vo.GenerosVO;
+import br.mackenzie.dvdstore.entity.GenerosVO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
