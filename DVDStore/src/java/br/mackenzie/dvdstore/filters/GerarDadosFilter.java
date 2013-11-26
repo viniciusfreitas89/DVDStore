@@ -85,17 +85,17 @@ public class GerarDadosFilter implements Filter {
             Random randomGenerator = new Random();
             List<MidiaVO> list = Arrays.asList(
                             new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
-                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
+                            new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
                             new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
                             new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
                             new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
                             new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
-                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
+                            new MidiaVO("Guerra Mundial Z", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",20.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
                             new MidiaVO("CAMINHANDO COM DINOSSAUROS", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",25.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
                             new MidiaVO("Caça aos Gângsteres", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",22.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
-                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
-                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt)),
-                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas(), gerarImg(listaBt))
+                            new MidiaVO("Mama", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",24.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("O Último Desafio", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",21.00f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas()),
+                            new MidiaVO("João e Maria Caçadores de Bruxas", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",28.50f, generos.get(randomGenerator.nextInt(generos.size())), gerarIdiomas())
                             );
             
             for (MidiaVO vo : list){
